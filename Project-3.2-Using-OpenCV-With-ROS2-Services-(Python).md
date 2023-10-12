@@ -3,8 +3,8 @@
 # Problem Statement
 
 1. Create a **custom service interface** named **TurnCameraService.srv** which consists of a **request** message named “**angle**” of type “**float32**” and a **response** message named **“image”** of type “**sensor_msgs/Image**”.
-2. Create a **Service Client** node named turn_camera**_client.py** which uses the **TurnCameraService.srv** custom service interface to **send** the **request** message **“angle”** to a Service Client node via a service named **/turn_camera -** to turn the robot camera to a specified angle.
-3. Create a **Service Server** node named **turn_camera_server.py** which uses the **TurnCameraService.srv** custom service interface to **receive** the **request** message **“angle”** from the Service Client ****and then processes this information to send back an **image response message** of **.png** format - that the robot takes after turning the camera by the instructed **angle** value.
+2. Create a **Service Client** node named **turn_camera_client.py** which uses the **TurnCameraService.srv** custom service interface to **send** the **request** message **“angle”** to a Service Client node via a service named **/turn_camera -** to turn the robot camera to a specified angle.
+3. Create a **Service Server** node named **turn_camera_server.py** which uses the **TurnCameraService.srv** custom service interface to **receive** the **request** message **“angle”** from the Service Client and then processes this information to send back an **image response message** of **.png** format - that the robot takes after turning the camera by the instructed **angle** value.
 4. The **Service Client** node should display the image received from the **Service Server.** 
 5. Now, since we do not have a real robot and haven’t learned about making simulations yet, we are just going to have some pre-taken images - which are named by an angle - and store them inside the **ros2_py_udemy_tutorial/src/udemy_ros2_pkg/images** folder - from where we can use them in our code and return one of these images based on the **request** message **angle.**
 6. You can click some images on your own. Name them one by one as -30, -15, 0, 15 & 30 respectively. Store these images inside the **ros2_py_udemy_tutorial/src/udemy_ros2_pkg/images** folder.
@@ -33,7 +33,7 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
     exit()
     ```
     
-    ![Untitled](Project%203%202%20Using%20OpenCV%20With%20ROS2%20Services%20(Pytho%2073f2d0bee2e04499abd39a6cdb9991f4/Untitled.png)
+    ![Untitled](Images/Project3.2/Untitled.png)
     
 - Another way to check **OpenCV** Version is to run the following command from the terminal:
     
@@ -41,10 +41,10 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
     dpkg -s libopencv-dev
     ```
     
-    ![Untitled](Project%203%201%20Using%20OpenCV%20With%20ROS2%20Services%20(C++)%202d5969c3214a4e428a9d045aa9a8ac3d/Untitled%201.png)
+    ![Untitled](Images/Project3.2/Untitled%201.png)
     
 
-# ****Include Dependencies in `package.xml`**
+# Include Dependencies in `package.xml`
 
 ```xml
 <depend>OpenCV</depend>
@@ -385,4 +385,4 @@ if __name__=='__main__':
 
 # Complete Workspace Structure:
 
-![Untitled](Project%203%202%20Using%20OpenCV%20With%20ROS2%20Services%20(Pytho%2073f2d0bee2e04499abd39a6cdb9991f4/Untitled%201.png)
+![Untitled](Images/Project3.2/Untitled%201.png)

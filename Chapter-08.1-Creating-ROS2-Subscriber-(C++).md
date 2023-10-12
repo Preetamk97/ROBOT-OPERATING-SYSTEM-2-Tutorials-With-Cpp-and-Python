@@ -4,9 +4,9 @@ In this lesson, we are going to build a simple **subscriber node** using **C++**
 
 # Adding The File
 
-- Create a file **subscriber.cpp** file ****in the **ros2_cpp_udemy_tutorial/src/udemy_ros2_pkg/src** directory from the VS Code **Explorer** Sidebar.
+- Create a file **subscriber.cpp** file inside the **ros2_cpp_udemy_tutorial/src/udemy_ros2_pkg/src** directory from the VS Code **Explorer** Sidebar.
 
-![Untitled](Chapter%208%201%20Creating%20ROS2%20Subscriber%20(C++)%209598ce70fd80424e9d455d9623ec290b/Untitled.png)
+    ![Untitled](Images/Chapter8.1/Untitled.png)
 
 - Add the following code to the **subscriber.cpp** file:
     
@@ -164,9 +164,9 @@ In this lesson, we are going to build a simple **subscriber node** using **C++**
     }
     ```
     
-- Do the **boldified** **additions** to the **CMakeLists.txt** file:
+- Add the following code to the **CMakeLists.txt** file:
     
-    ```python
+    ```cmake
     cmake_minimum_required(VERSION 3.8)
     project(udemy_ros2_pkg)
     
@@ -197,11 +197,11 @@ In this lesson, we are going to build a simple **subscriber node** using **C++**
     add_executable(publisher src/publisher.cpp) 
     ament_target_dependencies(publisher rclcpp std_msgs)
     
-    **add_executable(subscriber src/subscriber.cpp) 
-    ament_target_dependencies(subscriber rclcpp std_msgs)**
+    add_executable(subscriber src/subscriber.cpp) 
+    ament_target_dependencies(subscriber rclcpp std_msgs)
     
     install(TARGETS 
-            **publisher** 
+            publisher 
             subscriber
             DESTINATION lib/${PROJECT_NAME}
     )
@@ -214,16 +214,15 @@ In this lesson, we are going to build a simple **subscriber node** using **C++**
 
 - Go to **Terminal** Tab → **Run Build Task**
 
-![Untitled](Chapter%208%201%20Creating%20ROS2%20Subscriber%20(C++)%209598ce70fd80424e9d455d9623ec290b/Untitled%201.png)
+    ![Untitled](Images/Chapter8.1/Untitled%201.png)
 
-<aside>
-💡 After the workspace is successfully built, you can see the **subscriber** executable file inside **ros2_cpp_udemy_tutorial/build/udemy_ros2_pkg** directory and also its **symbolic link file** inside **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib/udemy_ros2_pkg** directory.
 
-![Untitled](Chapter%208%201%20Creating%20ROS2%20Subscriber%20(C++)%209598ce70fd80424e9d455d9623ec290b/Untitled%202.png)
+    💡 After the workspace is successfully built, you can see the **subscriber** executable file inside **ros2_cpp_udemy_tutorial/build/udemy_ros2_pkg** directory and also its **symbolic link file** inside **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib/udemy_ros2_pkg** directory.
 
-![Untitled](Chapter%208%201%20Creating%20ROS2%20Subscriber%20(C++)%209598ce70fd80424e9d455d9623ec290b/Untitled%203.png)
+![Untitled](Images/Chapter8.1/Untitled%202.png)
 
-</aside>
+![Untitled](Images/Chapter8.1/Untitled%203.png)
+
 
 # Running The `subscriber` Node From The VS Code Terminal:
 
@@ -242,9 +241,9 @@ In this lesson, we are going to build a simple **subscriber node** using **C++**
 
 - Open a **second terminal** in the **VS Code Editor** - **ros2_cpp_udemy_tutorial** workspace - by clicking on the **Split Terminal** button at the top-right corner of the terminal.
     
-    ![Untitled](Chapter%208%201%20Creating%20ROS2%20Subscriber%20(C++)%209598ce70fd80424e9d455d9623ec290b/Untitled%204.png)
+    ![Untitled](Images/Chapter8.1/Untitled%204.png)
     
-    ![Untitled](Chapter%208%201%20Creating%20ROS2%20Subscriber%20(C++)%209598ce70fd80424e9d455d9623ec290b/Untitled%205.png)
+    ![Untitled](Images/Chapter8.1/Untitled%205.png)
     
 - On the **second terminal**, run the following commands to start the `publisher` node:
     

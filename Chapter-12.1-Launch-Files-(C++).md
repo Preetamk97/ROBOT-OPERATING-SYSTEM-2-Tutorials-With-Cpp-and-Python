@@ -9,11 +9,11 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher**
 1. Open your **workspace** folder in **VS Code.**
 2. Create a **new folder** named **launch** inside your **udemy_ros2_pkg** package folder.
     
-    ![Untitled](Chapter%2012%201%20Launch%20Files%20(C++)%20443f3ff72a4d405c8002a66f7ab79adb/Untitled.png)
+    ![Untitled](Images/Chapter12.1/Untitled.png)
     
 3. **Right-click** on **launch → New File** → Name it **rpm_pub_node_launch.py** — this is a **python file** and inside this file, we are gonna add some **python code.**
     
-    ![Untitled](Chapter%2012%201%20Launch%20Files%20(C++)%20443f3ff72a4d405c8002a66f7ab79adb/Untitled%201.png)
+    ![Untitled](Images/Chapter12.1/Untitled%201.png)
     
 4. Add the following code to the newly created **rpm_pub_node_launch.py** file:
     
@@ -65,7 +65,7 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher**
     ```
     
 5. **Save** the files and head over to the **CMakeLists.txt** file. 
-6. Do the following **Highlighted** additions to the **CMakeLists.txt** code :
+6. Add the following code to the **CMakeLists.txt** file :
     
     ```c
     cmake_minimum_required(VERSION 3.8)
@@ -115,11 +115,11 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher**
             DESTINATION lib/${PROJECT_NAME}
     )
     
-    **install(
+    install(
       DIRECTORY
       launch
       DESTINATION share/${PROJECT_NAME}
-    )**
+    )
     
     ament_package()
     ```
@@ -133,19 +133,19 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher**
     ros2 launch udemy_ros2_pkg rpm_pub_node_launch.py
     ```
     
-    ![Untitled](Chapter%2012%201%20Launch%20Files%20(C++)%20443f3ff72a4d405c8002a66f7ab79adb/Untitled%202.png)
+    ![Untitled](Images/Chapter12.1/Untitled%202.png)
     
     Observe the highlighted portion of the output below:
     
-    ![Untitled](Chapter%2012%201%20Launch%20Files%20(C++)%20443f3ff72a4d405c8002a66f7ab79adb/Untitled%203.png)
+    ![Untitled](Images/Chapter12.1/Untitled%203.png)
     
     You can the **outputs** for the `ros2 node list` and `ros2 topic list` commands in the **terminal output**.
     
-    In the highlighted portion, the **first three [INFO] messages** are stating that all the tasks entrusted to the **LaunchDescription** object i.e [1]starting the **rpm_publisher** node, [2]running the `ros2 node list` command, [3]running the `ros2 topic list` command — have been **started** successfully.
+    In the highlighted portion, the **first three [INFO] messages** are stating that all the tasks entrusted to the **LaunchDescription** object i.e [1] starting the **rpm_publisher** node, [2] running the `ros2 node list` command, [3] running the `ros2 topic list` command — have been **started** successfully.
     
-    Next in the queue -  **[ros2-2]** shows the output of the second task i.e [2]running the `ros2 node list` command & **[INFO][ros2-2]** message states that the task has been completed successfully.
+    Next in the queue -  **[ros2-2]** shows the output of the second task i.e [2] running the `ros2 node list` command & **[INFO][ros2-2]** message states that the task has been completed successfully.
     
-    Next in the queue, there are three **[ros2-3]** messages which give the output of the third activity entrusted to **LaunchDescription** i.e [3]running the `ros2 topic list` command.
+    Next in the queue, there are three **[ros2-3]** messages which give the output of the third activity entrusted to **LaunchDescription** i.e [3] running the `ros2 topic list` command.
     
     And finally, the last **[INFO][ros2-3]** message states that the third activity is completed successfully.
     
@@ -166,4 +166,4 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher**
     ros2 topic echo rpm 
     ```
     
-    ![Untitled](Chapter%2012%201%20Launch%20Files%20(C++)%20443f3ff72a4d405c8002a66f7ab79adb/Untitled%204.png)
+    ![Untitled](Images/Chapter12.1/Untitled%204.png)

@@ -12,18 +12,18 @@
 - **Cross-Platform Support -** ROS 2 ****can run on multiple operating systems including Linux, Windows, and MacOS.
 - ROS2 allows **Easy integration** with ****projects developed in ****ROS 1.
 
-# ROS Simulation and Visualization ****Overview****
+## ROS Simulation and Visualization ****Overview****
 
 ROS also includes software suites to help with robotics simulation and data visualization. This article is just a quick overview so you are aware of these features. These software suites will be gone in more detail later in the course.
 
-## **Simulation**
+### **Simulation**
 
 - **Gazebo** : Gazebo is a free-to-use robot simulator which is able to communicate data over ROS. It is able to keep track of robot positions, as well as mimic the state of a real robot. It includes virtual sensors which can be used to simulate real sensor data so that you are able to test your robot code as if you were running it on a physical robotic system. Gazebo has been recently updated, and partnered with Ignition robotics, leading to the new Ignition Gazebo simulation engine.
     
     Website: [http://gazebosim.org/](http://gazebosim.org/)
     
 
-## **Visualization**
+### **Visualization**
 
 - ***RViz***
     
@@ -38,7 +38,7 @@ ROS also includes software suites to help with robotics simulation and data visu
     Website: [http://wiki.ros.org/rqt](http://wiki.ros.org/rqt)
     
 
-# Difference Between ROS 2 and ROS1
+## Difference Between ROS 2 and ROS1
 
 ![https://img-b.udemycdn.com/redactor/raw/article_lecture/2022-11-14_21-26-16-0627c55739999d363c4b2be315b7bc29.jpg](https://img-b.udemycdn.com/redactor/raw/article_lecture/2022-11-14_21-26-16-0627c55739999d363c4b2be315b7bc29.jpg)
 

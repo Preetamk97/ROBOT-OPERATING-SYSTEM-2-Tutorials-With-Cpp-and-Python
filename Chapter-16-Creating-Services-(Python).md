@@ -10,7 +10,7 @@
 
 - To see the list of currently available ROS2 Interfaces, run the `ros2 interface list` command from any terminal.
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled.png)
+    ![Untitled](Images/Chapter16/Untitled.png)
     
 - To see the **code contents** of any particular ROS Interface, run the following command from any terminal.
     
@@ -19,7 +19,7 @@
     # ros2 interface show complete_interface_name
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%201.png)
+    ![Untitled](Images/Chapter16/Untitled%201.png)
     
     In the above picture, we are looking at the contents of **std_srvs/srv/SetBool** interface. It is a built-in **service interface** that comes with ROS2 installation. If we observe its code contents carefully, we can see two sections separated by 3 dashes (**---**). The top section/part describes the **request** message (`bool data`) and the bottom part describes the **response** message(s) (`bool success` & `string message`)
     
@@ -30,10 +30,8 @@
 - Create a new folder **srv** inside the **udemy_ros2_pkg** package folder — to store our custom service interfaces.
 - Inside **srv** folder, create a **new file** named **OddEvenCheck.srv.**
     
-    <aside>
-    💡 Note: By convention, **interface** files in ROS always follow **Pascal Casing Format** (Ex - OutOfBoundsException) for naming.
-    
-    </aside>
+    > 💡 **Note**: By convention, **interface** files in ROS always follow **Pascal Casing Format** (Ex - OutOfBoundsException) for naming.
+
     
 - Add the following code to **OddEvenCheck.srv** file.
     
@@ -43,9 +41,9 @@
     string decision
     ```
     
-    **int64** & **string** are two of many **built-in** **ROS2 Primitive Datatypes** that are ****used for defining various messages (like *integers, booleans, strings*) that nodes share among each other . Below table lists some available built-in primitive datatypes in ROS that we can use when creating custom interfaces.
+    **int64** & **string** are two of many **built-in** **ROS2 Primitive Datatypes** that are used for defining various messages (like *integers, booleans, strings*) that nodes share among each other . Below table lists some available built-in primitive datatypes in ROS that we can use when creating custom interfaces.
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%202.png)
+    ![Untitled](Images/Chapter16/Untitled%202.png)
     
 
 - Save the file **OddEvenCheck.srv.**
@@ -94,9 +92,9 @@
     ros2 interface list
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%203.png)
+    ![Untitled](Images/Chapter16/Untitled%203.png)
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%204.png)
+    ![Untitled](Images/Chapter16/Untitled%204.png)
     
     This time we can see a new interface named **udemy_ros2_pkg/srv/OddEvenCheck** listed in the output.
     
@@ -106,7 +104,7 @@
     ros2 interface show udemy_ros2_pkg/srv/OddEvenCheck
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%205.png)
+    ![Untitled](Images/Chapter16/Untitled%205.png)
     
 
 # Step 2: Creating a ROS2 Service Server Node
@@ -172,7 +170,7 @@
     ```c
     # Specifying our python scripts.
     install(PROGRAMS
-      **scripts/service_server.py**
+      scripts/service_server.py
       DESTINATION lib/${PROJECT_NAME}
     )
     ```
@@ -186,7 +184,7 @@
     ros2 run udemy_ros2_pkg service_server.py
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%206.png)
+    ![Untitled](Images/Chapter16/Untitled%206.png)
     
 - Now **keeping the last terminal parallely open**,  open a new terminal in your workspace folder and run the following terminal commands.
     
@@ -197,12 +195,9 @@
     
     In the output, we can see our **'odd_even_check'** service being listed.
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%207.png)
+    ![Untitled](Images/Chapter16/Untitled%207.png)
     
-    <aside>
-    💡 While keeping the **service_server.py** terminal open, go to your **VS Code** and hit the **Shift + Ctrl + P →** this opens up the **“Show All Commands”** panel → there if you type **ros,** you can see various commands available to us through the **ROS Extension** of VS Code → from there, on selecting the **“ROS: Show Status”** command, we can see a new side tab opening within the VS Code window named **“ROS2 System Status”,** which lists all the nodes, topics, services currently active in our ROS Terminal Environment.
-    
-    </aside>
+    > 💡 While keeping the **service_server.py** terminal open, go to your **VS Code** and hit the **Shift + Ctrl + P →** this opens up the **“Show All Commands”** panel → there if you type **ros,** you can see various commands available to us through the **ROS Extension** of VS Code → from there, on selecting the **“ROS: Show Status”** command, we can see a new side tab opening within the VS Code window named **“ROS2 System Status”,** which lists all the nodes, topics, services currently active in our ROS Terminal Environment.
     
 - We can interact with our **service_server.py** node even without having a service client node yet.
     
@@ -215,9 +210,9 @@
     # In the above command, /odd_even_check is the service topic name and udemy_ros2_pkg/srv/OddEvenCheck is the name of the service interface that we  created and number:\5\ is the request message that we are sending to the service server. Here we are checking whether number 5 is odd or even.
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%208.png)
+    ![Untitled](Images/Chapter16/Untitled%208.png)
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%209.png)
+    ![Untitled](Images/Chapter16/Untitled%209.png)
     
 
 # Step 3: Creating a ROS2 Service Client Node
@@ -271,11 +266,11 @@
 - Save the **service_client.py** file.
 - Open the **CMakeLists.txt** file of the package and add the following code to it.
     
-    ```c
+    ```cmake
     # Specifying our python scripts.
     install(PROGRAMS
       scripts/service_server.py
-      **scripts/service_client.py**
+      scripts/service_client.py
       DESTINATION lib/${PROJECT_NAME}
     )
     ```
@@ -284,36 +279,36 @@
 
 # Step 4: Running Our Newly Created Service Server and Service Client Nodes
 
-- To start the **service server** node**,** open a new terminal from the workspace folder and run the following terminal commands:
+- To start the **service server** node, open a new terminal from the workspace folder and run the following terminal commands:
     
     ```bash
     source install/setup.bash
     ros2 run udemy_ros2_pkg service_server.py
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%2010.png)
+    ![Untitled](Images/Chapter16/Untitled%2010.png)
     
 
 - Keep the previous terminal parallely open.
     
-    To start the **service client** node**,** open a new terminal from the workspace folder and run the following terminal commands:
+    To start the **service client** node, open a new terminal from the workspace folder and run the following terminal commands:
     
     ```bash
     source install/setup.bash
     ros2 run udemy_ros2_pkg service_client.py
     ```
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%2011.png)
+    ![Untitled](Images/Chapter16/Untitled%2011.png)
     
 - The service client is asking is asking to enter an integer. Service client will send this integer to service server to check whether the given number is odd or even. Let us enter the number 5 and check the result. After entering the number, press **Enter**.
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%2012.png)
+    ![Untitled](Images/Chapter16/Untitled%2012.png)
     
 
 - Observe the output of the **service client** terminal.
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%2013.png)
+    ![Untitled](Images/Chapter16/Untitled%2013.png)
     
 - Observe the output of the **service server** terminal.
     
-    ![Untitled](Chapter%2016%20Creating%20Services%20(Python)%20bafce3ad658644f39b36ac287ba1aad5/Untitled%2014.png)
+    ![Untitled](Images/Chapter16/Untitled%2014.png)

@@ -39,23 +39,23 @@ My personal study notes on working with **ROBOT OPERATING SYSTEM 2 (ROS 2)** (**
 
 [Chapter 12.1. Launch Files (C++)](Chapter-12.1-Launch-Files-(C++).md)
 
-[Chapter 12.2 Launch Files (Python)](Chapter-12.2-Launch-Files-(Python).md)
+[Chapter 12.2. Launch Files (Python)](Chapter-12.2-Launch-Files-(Python).md)
 
-[Chapter 13 Creating A Custom Service Interface (C++)](Chapter-13-Creating-A-Custom-Service-Interface-(C++).md)
+[Chapter 13. Creating A Custom Service Interface (C++)](Chapter-13-Creating-A-Custom-Service-Interface-(C++).md)
 
-[Chapter 14 Creating A Service Client (C++)](Chapter-14-Creating-A-Service-Client-(C++).md)
+[Chapter 14. Creating A Service Client (C++)](Chapter-14-Creating-A-Service-Client-(C++).md)
 
-[Chapter 15 Creating A Service Server (C++)](Chapter-15-Creating-A-Service-Server-(C++).md)
+[Chapter 15. Creating A Service Server (C++)](Chapter-15-Creating-A-Service-Server-(C++).md)
 
 [Chapter 16. Creating Services (Python)](Chapter-16-Creating-Services-(Python).md)
 
-[Chapter 17.1 ROS2 Actions(Python)](Chapter-17.1-ROS2-Actions-(Python).md)
+[Chapter 17.1. ROS2 Actions(Python)](Chapter-17.1-ROS2-Actions-(Python).md)
 
 [Chapter 18. ROS2 Bag Files](Chapter-18-ROS2-Bag-Files.md)
 
-[Project 1.1 : Publishers & Subscribers (C++)](Project-1.1-Publishers-&-Subscribers-(C++).md)
+[Project 1.1: Publishers & Subscribers (C++)](Project-1.1-Publishers-&-Subscribers-(C++).md)
 
-[Project 1.2 : Publishers & Subscribers (Python)](Project-1.2-Publishers-&-Subscribers-(Python).md)
+[Project 1.2: Publishers & Subscribers (Python)](Project-1.2-Publishers-&-Subscribers-(Python).md)
 
 [Project 2.1: Launch Files (C++)](Project-2.1-Launch-Files-(C++).md)
 

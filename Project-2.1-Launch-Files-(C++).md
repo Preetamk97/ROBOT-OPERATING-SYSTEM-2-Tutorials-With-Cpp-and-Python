@@ -141,7 +141,7 @@ def generate_launch_description():
 
 ## CMakeLists.txt Code **(No Changes)**:
 
-```c
+```cmake
 cmake_minimum_required(VERSION 3.8)
 project(udemy_ros2_pkg)
 

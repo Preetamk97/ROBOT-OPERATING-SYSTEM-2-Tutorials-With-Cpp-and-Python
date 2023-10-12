@@ -2,12 +2,9 @@
 
 In this lesson, we are going to create a **C++ Service Server Node** for the **OddEvenCheck.srv** custom service interface that we created in Chapter 13.
 
-<aside>
-💡 **Service Server**
-
+> 💡 **Service Server** <br>
 The node which **processes** the **request message** sent from the **service client** and **gives** a **response message** back to the **service client**.
 
-</aside>
 
 1. Open your **VS Code** in **Workspace** **Directory**.
 2. Create a **service_server.cpp** file in the **src** directory of the **udemy_ros2_pkg** package folder.
@@ -67,18 +64,15 @@ The node which **processes** the **request message** sent from the **service cli
         return 0;
     }
     ```
+
+    > 💡 To remove the red squiggle line below the 2nd include statement : Click on the line → Click on the bulb icon appearing at the top → Under the **Quick Fix** select the 1st option **“Add to “includePath”:$…”**
+    ![Untitled](Images/Chapter15/Untitled.png)
     
-    <aside>
-    💡 To remove the red squiggle line below the 2nd include statement : Click on the line → Click on the bulb icon appearing at the top → Under the **Quick Fix** select the 1st option **“Add to “includePath”:$…”**
-    
-    ![Untitled](Chapter%2015%20Creating%20A%20Service%20Server%20(C++)%2000d22ef6273b485da4ed7ec17e20171f/Untitled.png)
-    
-    </aside>
     
 4. **Save** the code and move to the **CMakeLists.txt** file.
-5. Add the following **boldified** code to the **CMakeLists.txt** and **save** the file:
+5. Add the following code to the **CMakeLists.txt** and **save** the file:
     
-    ```cpp
+    ```cmake
     cmake_minimum_required(VERSION 3.8)
     project(udemy_ros2_pkg)
     
@@ -124,17 +118,17 @@ The node which **processes** the **request message** sent from the **service cli
     ament_target_dependencies(service_client rclcpp std_msgs)
     target_link_libraries(service_client "${cpp_typesupport_target}")
     
-    **add_executable(service_server src/service_server.cpp)
+    add_executable(service_server src/service_server.cpp)
     ament_target_dependencies(service_server rclcpp std_msgs)
-    target_link_libraries(service_server "${cpp_typesupport_target}")**
+    target_link_libraries(service_server "${cpp_typesupport_target}")
     
     install(TARGETS 
             publisher 
             subscriber
             rpm_publisher
             rpm_subscriber
-    				service_client
-    				**service_server**
+    		service_client
+    		service_server
             DESTINATION lib/${PROJECT_NAME}
     )
     
@@ -155,7 +149,7 @@ The node which **processes** the **request message** sent from the **service cli
     ros2 run udemy_ros2_pkg service_server
     ```
     
-    ![Untitled](Chapter%2015%20Creating%20A%20Service%20Server%20(C++)%2000d22ef6273b485da4ed7ec17e20171f/Untitled%201.png)
+    ![Untitled](Images/Chapter15/Untitled%201.png)
     
 8. Open a **parallel** terminal and run the following command:
     
@@ -164,7 +158,7 @@ The node which **processes** the **request message** sent from the **service cli
     #To see the list of active services
     ```
     
-    ![Untitled](Chapter%2015%20Creating%20A%20Service%20Server%20(C++)%2000d22ef6273b485da4ed7ec17e20171f/Untitled%202.png)
+    ![Untitled](Images/Chapter15/Untitled%202.png)
     
 
 # Using the service_server Node WITHOUT The service_client Node:
@@ -178,17 +172,17 @@ We can check the **functionality** of our **service_server** node **without** ex
     ros2 run udemy_ros2_pkg service_server
     ```
     
-    ![Untitled](Chapter%2015%20Creating%20A%20Service%20Server%20(C++)%2000d22ef6273b485da4ed7ec17e20171f/Untitled%203.png)
+    ![Untitled](Images/Chapter15/Untitled%203.png)
     
 2. Open a **2nd terminal** in the **workspace** folder and run the following commands:
 
-```bash
-source install/setup.bash
-ros2 service call /odd_even_check udemy_ros2_pkg/srv/OddEvenCheck number:\ -7\
-# ros2 service call <service-name> <service-location> <service-request-variable> : \number-value-to-check-for-odd-even\
-```
+    ```bash
+    source install/setup.bash
+    ros2 service call /odd_even_check udemy_ros2_pkg/srv/OddEvenCheck number:\ -7\
+    # ros2 service call <service-name> <service-location> <service-request-variable> : \number-value-to-check-for-odd-even\
+    ```
 
-![Untitled](Chapter%2015%20Creating%20A%20Service%20Server%20(C++)%2000d22ef6273b485da4ed7ec17e20171f/Untitled%204.png)
+    ![Untitled](Images/Chapter15/Untitled%204.png)
 
 In the above figure, we can see that the value of the **response** message **decision** is **Odd** for the **number -7**.
 
@@ -209,4 +203,4 @@ In the above figure, we can see that the value of the **response** message **dec
     ```
     
 
-![Untitled](Chapter%2015%20Creating%20A%20Service%20Server%20(C++)%2000d22ef6273b485da4ed7ec17e20171f/Untitled%205.png)
+    ![Untitled](Images/Chapter15/Untitled%205.png)

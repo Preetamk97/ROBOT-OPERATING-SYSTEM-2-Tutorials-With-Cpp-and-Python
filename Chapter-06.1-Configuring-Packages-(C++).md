@@ -8,187 +8,191 @@ In ROS2, the **default C++ build system** is called **ament_cmake**. **ament_cma
 
 The core instructions of building our **udemy_ros2_pkg** package are stored inside the  **CMakeLists.txt** file of the **package folder**.
 
-**Step 1**. Open the **CMakeLists.txt** file of the **udemy_ros2_pkg** package folder in **VS Code**.
+- **Step 1**. Open the **CMakeLists.txt** file of the **udemy_ros2_pkg** package folder in **VS Code**.
 
-**Step 2**. Add the following lines of code to the **CMakeLists.txt** file anywhere before the last line **ament_package()**
+- **Step 2**. Add the following lines of code to the **CMakeLists.txt** file anywhere before the last line **ament_package()**
 
-```cpp
-find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+  ```cpp
+  find_package(rclcpp REQUIRED)
+  find_package(std_msgs REQUIRED)
 
-add_executable(publisher src/publisher.cpp) 
-ament_target_dependencies(publisher rclcpp std_msgs)
+  add_executable(publisher src/publisher.cpp) 
+  ament_target_dependencies(publisher rclcpp std_msgs)
 
-install(TARGETS
-  publisher
-  DESTINATION lib/${PROJECT_NAME}
-)
-```
+  install(TARGETS
+    publisher
+    DESTINATION lib/${PROJECT_NAME}
+  )
+  ```
 
-**CMakeLists.txt** file code after adding the above lines of code:
+  **CMakeLists.txt** file code after adding the above lines of code:
 
-```bash
-cmake_minimum_required(VERSION 3.8)
-project(udemy_ros2_pkg)
+  ```bash
+  cmake_minimum_required(VERSION 3.8)
+  project(udemy_ros2_pkg)
 
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
+  if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+  endif()
 
-# find dependencies
-find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
-**find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)**
+  # find dependencies
+  find_package(ament_cmake REQUIRED)
+  # uncomment the following section in order to fill in
+  # further dependencies manually.
+  # find_package(<dependency> REQUIRED)
+  **find_package(rclcpp REQUIRED)
+  find_package(std_msgs REQUIRED)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+  if(BUILD_TESTING)
+    find_package(ament_lint_auto REQUIRED)
+    # the following line skips the linter which checks for copyrights
+    # comment the line when a copyright and license is added to all source files
+    set(ament_cmake_copyright_FOUND TRUE)
+    # the following line skips cpplint (only works in a git repo)
+    # comment the line when this package is in a git repo and when
+    # a copyright and license is added to all source files
+    set(ament_cmake_cpplint_FOUND TRUE)
+    ament_lint_auto_find_test_dependencies()
+  endif()
 
-**add_executable(publisher src/publisher.cpp) 
-ament_target_dependencies(publisher rclcpp std_msgs)
+  **add_executable(publisher src/publisher.cpp) 
+  ament_target_dependencies(publisher rclcpp std_msgs)
 
-install(TARGETS
-  publisher
-  DESTINATION lib/${PROJECT_NAME}
-)**
+  install(TARGETS
+    publisher
+    DESTINATION lib/${PROJECT_NAME}
+  )**
 
-ament_package()
-```
+  ament_package()
+  ```
 
-<aside>
-💡 The ROS2 **modules/packages** (**rclcpp & std_msgs**) which contain the header files (**rclcpp/rclcpp.hpp** & **std_msgs/msg/string.hpp**) that we #included in our **publisher.cpp** code are called **dependencies.**
 
-**find_package(rclcpp REQUIRED)** & **find_package(std_msgs REQUIRED) :** We need to add the dependencies used in our **publisher.cpp** file inside this find_package() function in the format of  **find_package(<dependency> REQUIRED)
+  💡 The ROS2 **modules/packages** (**rclcpp & std_msgs**) which contain the header files (**rclcpp/rclcpp.hpp** & **std_msgs/msg/string.hpp**) that we `#included` in our **publisher.cpp** code are called **dependencies**.
 
-add_executable(publisher src/publisher.cpp) : publisher =** name of the ****executable file that we are going to create for the **publisher.cpp** source code ****file  ****+  **src/publisher.cpp =** location of the source code file.
+  💡 **find_package(rclcpp REQUIRED)** & **find_package(std_msgs REQUIRED) :** We need to add the dependencies used in our **publisher.cpp** file inside this find_package() function in the format of  
 
-**ament_target_dependencies(publisher rclcpp std_msgs) : publisher =** name of the ****executable file that we are going to create for the **publisher.cpp** source code ****file  +  **rclcpp std_msgs** = **dependencies** of **publisher.cpp** source code file.
+  ```
+  find_package(<dependency> REQUIRED)
+  ```
 
-**install(TARGETS
-  publisher
-  DESTINATION lib/${PROJECT_NAME}
-)                                                                      
-:** Here**,
-install(TARGETS
-  <executable_file_name>
-  DESTINATION <address_where_executable_file_will_be_sourced_by_the_terminal>
-) 
+  💡 **add_executable(publisher src/publisher.cpp)** : 
+  - **publisher** = name of the **executable** file that we are going to create for the **publisher.cpp** source code file
+  - **src/publisher.cpp =** location of the source code file.
 
-lib/${PROJECT_NAME}  —** This gives the **address/destination** for storing the executable file **publisher** when it is created ; which in this case is a **folder** by the name of **${PROJECT_NAME}** inside the **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib** directory. ****The variable **PROJECT_NAME** references our **package name** as written at line no.2 of this **CMakeLists.txt** file code as **project(<project_name>).**
 
-</aside>
+  💡 **ament_target_dependencies(publisher rclcpp std_msgs)** : 
+  - **publisher** = name of the **executable** file that we are going to create for the **publisher.cpp** source code file 
+  - **rclcpp std_msgs** = **dependencies** of **publisher.cpp** source code file.
 
-<aside>
-💡 If you ever want to change your **package name**, you have to change it in 3 places:
-  1. The **package folder name.**
-  2. **CmakeList.txt** file **Line No.2 — project(udemy_ros2_pkg)**
-  3. package.xml file **Line No.4 — <name>udemy_ros2_pkg</name>**
 
-</aside>
+  💡
+  ```
+  install(TARGETS
+    <executable_file_name>
+    DESTINATION lib/${PROJECT_NAME}
+  )
+  ``` 
 
-**Step 3**. Add the following code to the **package.xml** file of the **udemy_ros2_pkg** package.
+  - `lib/${PROJECT_NAME}` : This gives the **address/destination** for storing the executable file **publisher** when it is created ; which in this case is a **folder** by the name of **${PROJECT_NAME}** inside the **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib** directory. The variable **PROJECT_NAME** references our **package name** as written at line no.2 of this **CMakeLists.txt** file code as `project(udemy_ros2_pkg)`.
 
-```bash
-<depend>rclcpp</depend>
-<depend>std_msgs</depend>
-```
 
-**rclcpp** & **std_msgs** are the dependencies that our **publisher.cpp** file of the **udemy_ros2_pkg** package uses.
+  💡 If you ever want to change your **package name**, you have to change it in 3 places:
+    1. The **package folder name.**
+    2. **CmakeList.txt** file **Line No.2 — project(udemy_ros2_pkg)**
+    3. package.xml file **Line No.4 — <name>udemy_ros2_pkg</name>**
 
-**package.xml** file after the code addition:
+- **Step 3**. Add the following code to the **package.xml** file of the **udemy_ros2_pkg** package.
 
-```bash
-<?xml version="1.0"?>
-<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<package format="3">
-  <name>udemy_ros2_pkg</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="pritam@todo.todo">pritam</maintainer>
-  <license>TODO: License declaration</license>
+  ```bash
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  ```
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-  **<depend>rclcpp</depend>
-  <depend>std_msgs</depend>**
+  **rclcpp** & **std_msgs** are the dependencies that our **publisher.cpp** file of the **udemy_ros2_pkg** package uses.
 
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  **package.xml** file after the code addition:
 
-  <export>
-    <build_type>ament_cmake</build_type>
-  </export>
+  ```bash
+  <?xml version="1.0"?>
+  <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+  <package format="3">
+    <name>udemy_ros2_pkg</name>
+    <version>0.0.0</version>
+    <description>TODO: Package description</description>
+    <maintainer email="pritam@todo.todo">pritam</maintainer>
+    <license>TODO: License declaration</license>
 
-</package>
-```
+    <buildtool_depend>ament_cmake</buildtool_depend>
+    **<depend>rclcpp</depend>
+    <depend>std_msgs</depend>**
 
-Save your work before proceeding.
+    <test_depend>ament_lint_auto</test_depend>
+    <test_depend>ament_lint_common</test_depend>
 
-**Step 4. Open a new terminal** from the **ros2_cpp_udemy_tutorial** workspace directory. Run the following commands from the terminal:
+    <export>
+      <build_type>ament_cmake</build_type>
+    </export>
 
-```bash
-source /opt/ros/humble/setup.bash
-# For setting up the ros2 environment in the terminal.
-# Not needed if you already have added this command to your bashrc 
-# file using the command : echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+  </package>
+  ```
 
-colcon build
-# For compiling the entire **ros2_cpp_udemy_tutorial** workspace directory.
-# After running this command successfully, you can actually see
-# the executable file publisher created 
-# at **ros2_cpp_udemy_tutorial/build/udemy_ros2_pkg** folder
-# But we will use **ros2 run** command from our terminal to run 
-# this **publisher** executable file **-** which will be accessed from 
-# **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib/udemy_ros2_pkg**
+  Save your work before proceeding.
 
-source install/setup.bash
-# Sourcing the **setup.bash** file present inside the **install** directory of our 
-**# ros2_cpp_udemy_tutorial** workspace - so that our terminal becomes aware of 
-# the location of our **ros2_cpp_udemy_tutorial** workspace.
-# After running this command, all the packages built inside 
-# **ros2_cpp_udemy_tutorial** workspace will be recognised by the terminal.
+- **Step 4. Open a new terminal** from the **ros2_cpp_udemy_tutorial** workspace directory. Run the following commands from the terminal:
 
-# To check if our terminal is sourced with the **ros2_cpp_udemy_tutorial** workspace
-ros2 pkg list
-# This will give a long list of various ros2 packages in which we can see
-# the names of all the packages built inside **ros2_cpp_udemy_tutorial** workspace.
-# In this case there is only one package built inside 
-# **ros2_cpp_udemy_tutorial** workspace -> the **udemy_ros2_pkg** package.
+  ```bash
+  source /opt/ros/humble/setup.bash
+  # For setting up the ros2 environment in the terminal.
+  # Not needed if you already have added this command to your bashrc 
+  # file using the command : echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
-ros2 run udemy_ros2_pkg publisher
-# ros2 run <name_of_package> <name_of_executable>
-# This command does not work if we have not sourced our terminal 
-# to the **ros2_cpp_udemy_tutorial** workspace folder.
-# So please ensure to always run **source install/setup.bash 
-#** command before running this command.
-```
+  colcon build
+  # For compiling the entire **ros2_cpp_udemy_tutorial** workspace directory.
+  # After running this command successfully, you can actually see
+  # the executable file publisher created 
+  # at **ros2_cpp_udemy_tutorial/build/udemy_ros2_pkg** folder
+  # But we will use **ros2 run** command from our terminal to run 
+  # this **publisher** executable file **-** which will be accessed from 
+  # **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib/udemy_ros2_pkg**
 
-**Step 5.** After running the last command above we cannot see anything on the terminal because the our “Hello World” messages are broadcasted over **ROS2** **DDS Communication Layer** and **not** as **standard output** to the **terminal**. **To see the messages on terminal, open a second terminal** in the  **ros2_cpp_udemy_tutorial** workspace directory → Run the following commands:
+  source install/setup.bash
+  # Sourcing the **setup.bash** file present inside the **install** directory of our 
+  **# ros2_cpp_udemy_tutorial** workspace - so that our terminal becomes aware of 
+  # the location of our **ros2_cpp_udemy_tutorial** workspace.
+  # After running this command, all the packages built inside 
+  # **ros2_cpp_udemy_tutorial** workspace will be recognised by the terminal.
 
-```bash
-ros2 node list
-# Gives list of active nodes'
-# /hello_world_pub_node
+  # To check if our terminal is sourced with the **ros2_cpp_udemy_tutorial** workspace
+  ros2 pkg list
+  # This will give a long list of various ros2 packages in which we can see
+  # the names of all the packages built inside **ros2_cpp_udemy_tutorial** workspace.
+  # In this case there is only one package built inside 
+  # **ros2_cpp_udemy_tutorial** workspace -> the **udemy_ros2_pkg** package.
 
-ros2 topic list
-# Gives list of active topics
-# /hello_world
-# /parameter_events
-# /rosout
+  ros2 run udemy_ros2_pkg publisher
+  # ros2 run <name_of_package> <name_of_executable>
+  # This command does not work if we have not sourced our terminal 
+  # to the **ros2_cpp_udemy_tutorial** workspace folder.
+  # So please ensure to always run **source install/setup.bash 
+  #** command before running this command.
+  ```
 
-ros2 topic echo /hello_world
-# For listening to the /hello_world topic messages.
-```
+- **Step 5.** After running the last command above we cannot see anything on the terminal because the our “Hello World” messages are broadcasted over **ROS2** **DDS Communication Layer** and **not** as **standard output** to the **terminal**. **To see the messages on terminal, open a second terminal** in the  **ros2_cpp_udemy_tutorial** workspace directory → Run the following commands:
+
+  ```bash
+  ros2 node list
+  # Gives list of active nodes'
+  # /hello_world_pub_node
+
+  ros2 topic list
+  # Gives list of active topics
+  # /hello_world
+  # /parameter_events
+  # /rosout
+
+  ros2 topic echo /hello_world
+  # For listening to the /hello_world topic messages.
+  ```
 
 ## Change the name of a Node with ros2 run – at run time
 
@@ -205,6 +209,6 @@ $ ros2 run ros2_tutorials_py minimal_node --ros-args -r __node:=another_node
 
 You can see on the logline: the name of the node has been changed!
 
-This feature will be handy when you want to launch multiple nodes with different names. For example, if you have a “single_wheel_controller” node, you can create a “right_wheel_controller” and a “left_wheel_controller” node, using the same code and executable.
+This feature will be handy when you want to launch multiple nodes with different names. For example, if you have a **single_wheel_controller** node, you can create a **right_wheel_controller** and a **left_wheel_controller** node, using the same code and executable.
 
 And this is important: **you can’t start 2 nodes with the same name**, or else expect to see some weird behavior.

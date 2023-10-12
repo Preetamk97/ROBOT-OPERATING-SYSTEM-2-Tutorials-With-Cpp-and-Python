@@ -4,7 +4,7 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **C++*
 
 1. For now, let's open our code editor → **open folder** → open **ros2_cpp_udemy_tutorial** workspace folder.
 2. In the VS Code File Explorer Panel on the left, under the **source directory (src)** → **udemy_ros2_pkg** package folder → **source directory(src) →** Create a new file named **publisher.cpp.**
-3. Complete information on **ROS2 C++ API** is documented in the official **rclcpp** **Documentation** ([https://docs.ros2.org/foxy/api/rclcpp/index.html](https://docs.ros2.org/foxy/api/rclcpp/index.html)).
+3. Complete information on **ROS2 C++ API** is documented in the official [rclcpp Documentation](https://docs.ros2.org/foxy/api/rclcpp/index.html).
 
 # Commented Code:
 

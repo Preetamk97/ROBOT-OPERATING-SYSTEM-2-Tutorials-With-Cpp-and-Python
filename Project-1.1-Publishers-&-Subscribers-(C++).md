@@ -139,6 +139,6 @@ int main(int argc, char *argv[])
     ```
     
 
-![Untitled](Project%201%201%20Publishers%20&%20Subscribers%20(C++)%20a21e23c78ce04b2ba55fd9b70f1a46d2/Untitled.png)
+![Untitled](Images/Project1.1/Untitled.png)
 
-![Untitled](Project%201%201%20Publishers%20&%20Subscribers%20(C++)%20a21e23c78ce04b2ba55fd9b70f1a46d2/Untitled%201.png)
+![Untitled](Images/Project1.1/Untitled%201.png)

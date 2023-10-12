@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
 # **CMakeLists.txt**
 
-```c
+```cmake
 cmake_minimum_required(VERSION 3.8)
 project(udemy_ros2_pkg)
 
@@ -197,4 +197,4 @@ ament_package()
 
 1. Now let us run our nodes. Open a **new terminal** and **run the following commands.**
     
-    ![Untitled](Project%201%202%20Publishers%20&%20Subscribers%20(Python)%2067be87c850074c1f99e1ac34a165f9a7/Untitled.png)
+    ![Untitled](Images/Project1.2/Untitled.png)

@@ -12,9 +12,9 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
 
 # Project Statement
 
-- We have a **mobile robot**, which is being controlled by an **action client node** and an **action server node.** The **action client node** sends a 3D-coordinate location (**Goal**) ****to the **action server node.**
-- Upon receiving the **Goal** by the **action server node,** the robot starts **moving/navigating** - ****from ****its current location - to the given **Goal Point**. ****While the robot is navigating to the given **Goal Point**, the **action server node** keeps sending data ****(Feedback)**** - back to the **action client node** - on how far is the robot still - from the from the given **goal point.**
-- When the robot reaches its destination, the **action server node** returns **the time,** on how long it took for the robot to reach its destination, ****to the **action client node,** as **Result.**
+- We have a **mobile robot**, which is being controlled by an **action client node** and an **action server node.** The **action client node** sends a 3D-coordinate location (**Goal**) to the **action server node.**
+- Upon receiving the **Goal** by the **action server node,** the robot starts **moving/navigating** - from its current location - to the given **Goal Point**. While the robot is navigating to the given **Goal Point**, the **action server node** keeps sending data ***(Feedback)*** - back to the **action client node** - on how far is the robot still - from the from the given **goal point.**
+- When the robot reaches its destination, the **action server node** returns **the time,** on how long it took for the robot to reach its destination, to the **action client node,** as **Result.**
     
     
     | Goal | (x,y,z) coordinates |
@@ -28,11 +28,11 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
 
 - Create a new folder called **action** inside the **src/udemy_ros2_pkg** package folder of your **ros2_py_udemy_tutorial** workspace.
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled.png)
+    ![Untitled](Images/Chapter17.1/Untitled.png)
     
-- Within this folder, we will create our own **Custom Action Interface file** named **Navigate.action .**
+- Within this folder, we will create our own **Custom Action Interface file** named **Navigate.action** .
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%201.png)
+    ![Untitled](Images/Chapter17.1/Untitled%201.png)
     
 - Add the following code inside **Navigate.action** file.
     
@@ -77,7 +77,7 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
 
 # Configuring `CMakeLists.txt` For Our Newly Created Custom Action Interface
 
-- Add the following code to the **CMakeLists.txt** file of your **udemy_ros2_pkg** package folder**.**
+- Add the following code to the **CMakeLists.txt** file of your **udemy_ros2_pkg** package folder.
     
     ```python
     # Adding the below dependency for configuring all the 
@@ -120,7 +120,7 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     
     We can see the name of our newly created custom action interface **udemy_ros2_pkg/action/Navigate** in the output list.
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%202.png)
+    ![Untitled](Images/Chapter17.1/Untitled%202.png)
     
 - To see the contents of **Navigate.action** interface, run the following command from the same terminal.
     
@@ -128,7 +128,7 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     ros2 interface show udemy_ros2_pkg/action/Navigate
     ```
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%203.png)
+    ![Untitled](Images/Chapter17.1/Untitled%203.png)
     
 
 ---
@@ -279,7 +279,7 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     ```python
     # Specifying our python scripts.
     install(PROGRAMS
-      **scripts/action_server.py**
+      scripts/action_server.py
       DESTINATION lib/${PROJECT_NAME}
     )
     ```
@@ -396,8 +396,8 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     ```python
     # Specifying our python scripts.
     install(PROGRAMS
-      **scripts/action_server.py
-    	scripts/action_client.py**
+      scripts/action_server.py
+    	scripts/action_client.py
       DESTINATION lib/${PROJECT_NAME}
     )
     ```
@@ -413,7 +413,7 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     ros2 run udemy_ros2_pkg action_server.py
     ```
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%204.png)
+    ![Untitled](Images/Chapter17.1/Untitled%204.png)
     
 - To run the **action client node,** open a new terminal from the workspace folder and run the following commands.
     
@@ -422,7 +422,7 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     ros2 run udemy_ros2_pkg action_client.py
     ```
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%205.png)
+    ![Untitled](Images/Chapter17.1/Untitled%205.png)
     
 - After doing the last step, you can see that the **action_client.py node terminal (terminal 2) i**s asking us to enter the values for x, y, and z-coordinates of the **Goal Point** for the robot to navigate to.
     
@@ -430,12 +430,12 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     
     These values represent the **coordinate location** of the **Goal Point.**
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%206.png)
+    ![Untitled](Images/Chapter17.1/Untitled%206.png)
     
 - As evident from the **action_server** terminal readings, the **action server** is expecting for the **robot current position** readings, which are to be made available over the **/robot_position** topic.
 - Open a new terminal (**terminal 3**) and run the command `ros2 topic list` to see the list of all the active terminals.
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%207.png)
+    ![Untitled](Images/Chapter17.1/Untitled%207.png)
     
 - We currently do not have any publisher to publish the **robot current position** readings over the **/robot_position** topic. But we can also manually publish some data over this topic even without a publisher. The messages we publish manually in this case will be 3-D coordinate readings of the **robot current position.** The ROS message datatype for 3-D spatial coordinates is **geometry_msgs/msg/Point.**
     
@@ -452,9 +452,9 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     
     This command means that our robot’s **current position** has been updated to x = 1.0, y = 2.0 and z = 0.0.
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%208.png)
+    ![Untitled](Images/Chapter17.1/Untitled%208.png)
     
-    In the above picture, **terminal 1** shows that the **action server** has successfully received the position coordinates published by us just now and its value of **current robot position** has been updated successfully. Also, the server has calculated the remaining distance between the **newly updated current robot position** and the **Goal Point** and sent the data over to the **action client** as **feedback** (observe **terminal 2**) ****.
+    In the above picture, **terminal 1** shows that the **action server** has successfully received the position coordinates published by us just now and its value of **current robot position** has been updated successfully. Also, the server has calculated the remaining distance between the **newly updated current robot position** and the **Goal Point** and sent the data over to the **action client** as **feedback** (observe **terminal 2**).
     
 - Now, let us move our robot to the set **Goal Point.** Run the below command from **terminal 3** and observe the corresponding responses in the other terminals.
     
@@ -462,10 +462,10 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     ros2 topic pub --once /robot_position geometry_msgs/msg/Point "{x: 2.0, y: 3.0, z: 0.0}"
     ```
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%209.png)
+    ![Untitled](Images/Chapter17.1/Untitled%209.png)
     
-    Here we are updating the value of **current robot position** as equal to ****the **Goal Point -** implying to our **action server** that our robot has reached its destination.
+    Here we are updating the value of **current robot position** as equal to the **Goal Point** implying to our **action server** that our robot has reached its destination.
     
 - Observe the final **Result** value (**time elapsed**) that gets printed on the action client terminal (terminal 2).
     
-    ![Untitled](Chapter%2017%201%20ROS2%20Actions(Python)%20731ef2bdf32a498fb56a4fcc6ddcb003/Untitled%2010.png)
+    ![Untitled](Images/Chapter17.1/Untitled%2010.png)

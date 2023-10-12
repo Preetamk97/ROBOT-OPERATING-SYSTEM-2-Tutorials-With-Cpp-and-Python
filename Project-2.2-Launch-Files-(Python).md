@@ -139,7 +139,7 @@ def generate_launch_description():
 
 ## CMakeLists.txt Code **(No Changes)**:
 
-```c
+```cmake
 cmake_minimum_required(VERSION 3.8)
 project(udemy_ros2_pkg)
 
@@ -171,10 +171,10 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
 )
 
-**install(DIRECTORY
+install(DIRECTORY
         launch
         DESTINATION share/${PROJECT_NAME}/
-)**
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -193,4 +193,4 @@ ament_package()
 
 ## Output
 
-![Untitled](Project%202%202%20Launch%20Files%20(Python)%209b728a041f3b461fb57e6b755e446dc8/Untitled.png)
+![Untitled](Images/Project2.2/Untitled.png)

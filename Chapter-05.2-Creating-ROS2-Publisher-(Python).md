@@ -4,8 +4,8 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **Pyth
 
 1. For now, let's open our code editor → **open folder** → open **ros2_py_udemy_tutorial** workspace folder.
 2. In the VS Code File Explorer Panel on the left, under the **source directory (src)** → **udemy_ros2_pkg** package folder → **script** folder **→** Create a **new file** named **publisher.py.**
-3. For more information on **ROS2 Python API** you can refer to the official **rclpy** **Documentation** ([https://docs.ros2.org/foxy/api/rclpy/index.html](https://docs.ros2.org/foxy/api/rclpy/index.html)).
-4. Add the following code to **publisher.py** file**.**
+3. For more information on **ROS2 Python API** you can refer to the official [rclpy Documentation](https://docs.ros2.org/foxy/api/rclpy/index.html).
+4. Add the following code to **publisher.py** file.
     
     ```python
     import rclpy                        # importing rclpy module : Python library for ROS 2
@@ -73,7 +73,7 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **Pyth
 5. You can run this file from your **VS Code** in two ways (*your VS Code must be opened from your **workspace folder***)
     1. Using the **Run Python File Button** at the top-right corner of your VS Code window.
         
-        ![Untitled](Chapter%205%202%20Creating%20ROS2%20Publisher%20(Python)%20f59ac1eb3481464cb02194358147144e/Untitled.png)
+        ![Untitled](Images/Chapter5.2/Untitled.png)
         
     2. Using **VS Code Integrated Terminal** *(or **any other** terminal)*
         
@@ -85,7 +85,7 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **Pyth
         # python3 <complete address of your publisher.py file>
         ```
         
-        ![Untitled](Chapter%205%202%20Creating%20ROS2%20Publisher%20(Python)%20f59ac1eb3481464cb02194358147144e/Untitled%201.png)
+        ![Untitled](Images/Chapter5.2/Untitled%201.png)
         
         We cannot see the messages published by the **publisher.py** file in the **current** terminal because they are being **published/broadcasted** over **ROS 2 DDS** (*Data Distribution Service*).
         
@@ -96,7 +96,7 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **Pyth
     ros2 node list
     ```
     
-    ![Untitled](Chapter%205%202%20Creating%20ROS2%20Publisher%20(Python)%20f59ac1eb3481464cb02194358147144e/Untitled%202.png)
+    ![Untitled](Images/Chapter5.2/Untitled%202.png)
     
     As we can see the name of our **publisher.py** file’s **node** name **hello_world_pub_node** in the the list of the **currently active** **nodes** - this proves that our file **publisher.py** is running successfully.
     
@@ -108,7 +108,7 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **Pyth
     
     This should list our **publisher.py** file’s **topic** name **hello_world** in the output.
     
-    ![Untitled](Chapter%205%202%20Creating%20ROS2%20Publisher%20(Python)%20f59ac1eb3481464cb02194358147144e/Untitled%203.png)
+    ![Untitled](Images/Chapter5.2/Untitled%203.png)
     
     **/parameter_events** & **/rosout** are **default** topics of ROS 2 DDS.
     
@@ -120,7 +120,7 @@ In this lesson, we will create our very own **ROS2 Publisher Node** using **Pyth
     # ros2 topic echo /topic_name
     ```
     
-    ![Untitled](Chapter%205%202%20Creating%20ROS2%20Publisher%20(Python)%20f59ac1eb3481464cb02194358147144e/Untitled%204.png)
+    ![Untitled](Images/Chapter5.2/Untitled%204.png)
     
 
-![Untitled](Chapter%205%202%20Creating%20ROS2%20Publisher%20(Python)%20f59ac1eb3481464cb02194358147144e/Untitled%205.png)
+![Untitled](Images/Chapter5.2/Untitled%205.png)

@@ -4,7 +4,7 @@
 
 1. Create a **custom service interface** named **TurnCameraService.srv** which consists of a **request** message named “**angle**” of type “**float32**” and a **response** message named **“image”** of type “**sensor_msgs/Image**”.
 2. Create a **Service Client** node named **angle_client.cpp** which uses the **TurnCameraService.srv** custom service interface to **send** the **request** message **“angle”** to a Service Client node via a service named **/turn_camera_service -** to turn the robot camera to a specified angle.
-3. Create a **Service Server** node named **image_server.cpp** which uses the **TurnCameraService.srv** custom service interface to **receive** the **request** message **“angle”** from the Service Client ****and then processes this information to send back an **image response message** of **.png** format - that the robot takes after turning the camera by the instructed **angle** value.
+3. Create a **Service Server** node named **image_server.cpp** which uses the **TurnCameraService.srv** custom service interface to **receive** the **request** message **“angle”** from the Service Client and then processes this information to send back an **image response message** of **.png** format - that the robot takes after turning the camera by the instructed **angle** value.
 4. The **Service Client** node should display the image received from the **Service Server.** 
 5. Now, since we do not have a real robot and haven’t learned about making simulations yet, we are just going to have some pre-taken images - which are named by an angle - and store them inside the **ros2_cpp_udemy_tutorial/src/udemy_ros2_pkg/images** folder - from where we can use them in our code and return one of these images based on the **request** message **angle.**
 
@@ -32,7 +32,7 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
     exit()
     ```
     
-    ![Untitled](Project%203%201%20Using%20OpenCV%20With%20ROS2%20Services%20(C++)%202d5969c3214a4e428a9d045aa9a8ac3d/Untitled.png)
+    ![Untitled](Images/Project3.1/Untitled.png)
     
 - Another way to check **OpenCV** Version is to run the following command from the terminal:
     
@@ -40,7 +40,7 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
     dpkg -s libopencv-dev
     ```
     
-    ![Untitled](Project%203%201%20Using%20OpenCV%20With%20ROS2%20Services%20(C++)%202d5969c3214a4e428a9d045aa9a8ac3d/Untitled%201.png)
+    ![Untitled](Images/Project3.1/Untitled%201.png)
     
 
 # Step 2. Include Dependencies in `package.xml`
@@ -53,7 +53,7 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
 
 # Step 3. Include Dependencies in `CMakeLists.txt`
 
-```c
+```cmake
 find_package(sensor_msgs REQUIRED)  
 find_package(OpenCV REQUIRED)  
 find_package(cv_bridge REQUIRED)
@@ -61,7 +61,7 @@ find_package(cv_bridge REQUIRED)
 
 # Step 4. Write the code for **`TurnCameraService.srv`** Custom Service Interface
 
-```bash
+```srv
 float32 angle  # Request Message
 ---
 sensor_msgs/Image image  # Response Message
@@ -92,13 +92,13 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ```cpp
 #include "rclcpp/rclcpp.hpp"  // This line includes the header file for the ROS Client Library For C++ (rclcpp) API , which provides the basic functionality required to create ROS2 nodes in C++.
-**#include "udemy_ros2_pkg/srv/turn_camera_service.hpp"**  // This line includes the header file for the 'TurnCameraService.srv' custom service interface i.e defined in the udemy_ros2_pkg/srv folder. It is necessary for using the service interface in the C++ code. This service is used to turn the camera to a specified angle and return an image taken from that angle.
-**#include "opencv2/imgcodecs.hpp"**  // This line includes the header file for the 'OpenCV Image Codecs' module of OpenCV Library. The Image Codecs module in OpenCV could be described as a collection of functions and classes within the OpenCV library that provides support for reading, writing, and compressing images in a variety of file formats.
-**#include "cv_bridge/cv_bridge.h"**  
+#include "udemy_ros2_pkg/srv/turn_camera_service.hpp"  // This line includes the header file for the 'TurnCameraService.srv' custom service interface i.e defined in the udemy_ros2_pkg/srv folder. It is necessary for using the service interface in the C++ code. This service is used to turn the camera to a specified angle and return an image taken from that angle.
+#include "opencv2/imgcodecs.hpp"  // This line includes the header file for the 'OpenCV Image Codecs' module of OpenCV Library. The Image Codecs module in OpenCV could be described as a collection of functions and classes within the OpenCV library that provides support for reading, writing, and compressing images in a variety of file formats.
+#include "cv_bridge/cv_bridge.h"
 // This line includes the header file cv_bridge.h from the cv_bridge package.
 // The cv_bridge package is part of ROS2 and provides an interface between ROS2 and the OpenCV image processing library. The cv_bridge package provides a set of classes and functions that allow users to convert between ROS image messages and OpenCV images. 
 // The 'cv_bridge.h' header file provides the declaration for the main 'cv_bridge' class, 'CvBridge', which is used to perform the conversions between ROS image messages and OpenCV images. By including this header file, the code has access to the 'CvBridge' class and can use it to perform these conversions.
-**#include "opencv2/highgui.hpp"**  // Including header file for GUI tool to display recieved images.
+#include "opencv2/highgui.hpp"  // Including header file for GUI tool to display recieved images.
 
 #include <iostream>   // This line includes the 'iostream' library of the C++ 'std' namespace which provides the necessary functions for input and output operations.
 
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]){
     if(rclcpp::spin_until_future_complete(node, result) == rclcpp::FutureReturnCode::SUCCESS)
     // rclcpp::spin_until_future_complete(node, result) function keeps the 'node' running until the future object inside 'result' is completed. Finally, this function returns a rclcpp::FutureReturnCode which can be SUCCESS, INTERRUPTED OR TIMEOUT.
     {
-        **//Converting the image from ROS Image Interface Object Format to OpenCV Image Format through cv_bridge.
+        //Converting the image from ROS Image Interface Object Format to OpenCV Image Format through cv_bridge.
         auto cv_ptr = cv_bridge::toCvCopy(result.get()->image, "bgr8");  
         // Stores an OpenCV Image Object Shared Pointer
         // auto cv_ptr = cv_bridge::toCvCopy(result.get()->response_attr_name, image_encoding);
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]){
         // cv::imshow("Title_of _Image", cv_image_name);
         cv::waitKey(0);
         // cv::waitKey(0); --> Keep the window open until we hit enter
-        // cv::waitkey(1000) --> Keep the window open for the given amount of milliseconds.**
+        // cv::waitkey(1000) --> Keep the window open for the given amount of milliseconds.
     }
     else {
         std::cout<<"Sorry! Image could not be displayed due to some technical problem..."<<std::endl;
@@ -145,10 +145,10 @@ int main(int argc, char* argv[]){
 
 # Step 7. Add the `angle_client` executable to CMakeLists.txt
 
-```c
-**add_executable(angle_client src/angle_client.cpp)
+```cmake
+add_executable(angle_client src/angle_client.cpp)
 ament_target_dependencies(angle_client rclcpp sensor_msgs OpenCV cv_bridge)
-target_link_libraries(angle_client "${cpp_typesupport_target}")**
+target_link_libraries(angle_client "${cpp_typesupport_target}")
 
 install(TARGETS 
         publisher 
@@ -157,9 +157,9 @@ install(TARGETS
         rpm_subscriber
         service_client
         service_server
-        **angle_client**
-        DESTINATION lib/${PROJECT_NAME**}
-)**
+        angle_client
+        DESTINATION lib/${PROJECT_NAME}
+)
 ```
 
 # Step 8. Write the code for `image_server.cpp`
@@ -340,7 +340,7 @@ int main(int argc, char* argv[])
 
 # Step 9. Add the `image_server` executable to CMakeLists.txt
 
-```cpp
+```cmake
 add_executable(image_server src/image_server.cpp)
 ament_target_dependencies(image_server rclcpp sensor_msgs OpenCV cv_bridge)
 target_link_libraries(image_server "${cpp_typesupport_target}")
@@ -353,7 +353,7 @@ install(TARGETS
         service_client
         service_server
         angle_client
-        **image_server**
+        image_server
         DESTINATION lib/${PROJECT_NAME}
 )
 ```
@@ -363,7 +363,6 @@ install(TARGETS
 ## Bash Command To Run `image_server` Executable (Terminal A) :
 
 ```cpp
-
 ros2 run udemy_ros2_pkg image_server
 ```
 
@@ -375,7 +374,7 @@ ros2 run udemy_ros2_pkg image_server
 
 ## Complete `CMakeLists.txt` File Code:
 
-```cpp
+```cmake
 cmake_minimum_required(VERSION 3.8)
 project(udemy_ros2_pkg)
 
@@ -385,13 +384,13 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-**find_package(rclcpp REQUIRED)**
+find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 # Necessary import for using Custom Service Interfaces
-**find_package(rosidl_default_generators REQUIRED)**  
-**find_package(sensor_msgs REQUIRED)  
+find_package(rosidl_default_generators REQUIRED)
+find_package(sensor_msgs REQUIRED)  
 find_package(OpenCV REQUIRED)  
-find_package(cv_bridge REQUIRED)**  
+find_package(cv_bridge REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -402,16 +401,16 @@ endif()
 
 # We need to tell our ros2 compiler - the exact specifics of the newly created custom service interface files - that it needs to have the IDL Code generated for.
 # This line of code should always come before the add_excutable blocks, if you are planning to use the generated custom interface in these executables.
-**rosidl_generate_interfaces(${PROJECT_NAME} 
+rosidl_generate_interfaces(${PROJECT_NAME} 
                           "srv/OddEvenCheck.srv" 
                           "srv/TurnCameraService.srv" 
                           DEPENDENCIES
                           sensor_msgs 
-                          ADD_LINTER_TESTS )**                                                              
+                          ADD_LINTER_TESTS )                                                            
  
 # Set support for using custom interfaces in C++ from this package
 # This line should always be below the "rosidl_generate_interfaces()" code - otherwise it will produce compilation error.
-**rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")**
+rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
 
 add_executable(publisher src/publisher.cpp) 
 ament_target_dependencies(publisher rclcpp std_msgs)
@@ -433,13 +432,13 @@ add_executable(service_server src/service_server.cpp)
 ament_target_dependencies(service_server rclcpp std_msgs)
 target_link_libraries(service_server "${cpp_typesupport_target}")
 
-**add_executable(angle_client src/angle_client.cpp)
+add_executable(angle_client src/angle_client.cpp)
 ament_target_dependencies(angle_client rclcpp sensor_msgs OpenCV cv_bridge)
 target_link_libraries(angle_client "${cpp_typesupport_target}")
 
 add_executable(image_server src/image_server.cpp)
 ament_target_dependencies(image_server rclcpp sensor_msgs OpenCV cv_bridge)
-target_link_libraries(image_server "${cpp_typesupport_target}")**
+target_link_libraries(image_server "${cpp_typesupport_target}")
 
 install(TARGETS 
         publisher 
@@ -448,8 +447,8 @@ install(TARGETS
         rpm_subscriber
         service_client
         service_server
-        **angle_client
-        image_server**
+        angle_client
+        image_server
         DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -476,16 +475,16 @@ ament_package()
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  **<depend>rclcpp</depend>
+  <depend>rclcpp</depend>
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>OpenCV</depend>
-  <depend>cv_bridge</depend>**
-  **<build_depend>rosidl_default_generators</build_depend>**  
+  <depend>cv_bridge</depend>
+  <build_depend>rosidl_default_generators</build_depend>
   <!-- Indicates that the package requires the rosidl_default_generators package during the build process. rosidl_default_generators contains the default code generators for the ROS 2 Interface Definition Language (IDL). -->
-  **<exec_depend>rosidl_default_runtime</exec_depend>**
+  <exec_depend>rosidl_default_runtime</exec_depend>
   <!-- Indicates that the package requires the rosidl_default_runtime package during execution so that the Interface Definition Language (IDL) created can be used during node runtime. -->
-  **<member_of_group>rosidl_interface_packages</member_of_group>**
+  <member_of_group>rosidl_interface_packages</member_of_group>
   <!-- Indicates that the package is a member of the rosidl_interface_packages group.  -->
 
   <test_depend>ament_lint_auto</test_depend>

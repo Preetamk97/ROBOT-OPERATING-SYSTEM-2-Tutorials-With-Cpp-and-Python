@@ -21,7 +21,7 @@ The node which **processes** the **request message** sent from the **service cli
     
     Example: Lets us check the details/content of **std_srvs/srv/SetBool** service interface.
     
-    ![Untitled](Chapter%2013%20Creating%20A%20Custom%20Service%20Interface%20(C+%208b595c69713a4763ad486969101c75af/Untitled.png)
+    ![Untitled](Images/Chapter13/Untitled.png)
     
     In the above picture, 
     
@@ -56,7 +56,7 @@ The node which **processes** the **request message** sent from the **service cli
     
 7. Next, head over to the **package.xml** file of the **udemy_ros2_pkg** folder, where we will add in some new dependencies that will help us to use the newly created custom service interface file.
     
-    Add the following **boldified** lines of code to the **package.xml** file and **save the file**.
+    Add the following code to the **package.xml** file and **save the file**.
     
     ```xml
     <?xml version="1.0"?>
@@ -72,11 +72,11 @@ The node which **processes** the **request message** sent from the **service cli
     
       <depend>rclcpp</depend>
       <depend>std_msgs</depend>
-      **<build_depend>rosidl_default_generators</build_depend>**  
+      <build_depend>rosidl_default_generators</build_depend> 
       <!-- Indicates that the package requires the rosidl_default_generators package during the build process. rosidl_default_generators contains the default code generators for the ROS 2 Interface Definition Language (IDL). -->
-      **<exec_depend>rosidl_default_runtime</exec_depend>**
+      <exec_depend>rosidl_default_runtime</exec_depend>
       <!-- Indicates that the package requires the rosidl_default_runtime package during execution so that the Interface Definition Language (IDL) created can be used during node runtime. -->
-      **<member_of_group>rosidl_interface_packages</member_of_group>**
+      <member_of_group>rosidl_interface_packages</member_of_group>
       <!-- To include the newly created service interface to the group of other ROS2 interfaces.  -->
     
       <test_depend>ament_lint_auto</test_depend>
@@ -89,7 +89,7 @@ The node which **processes** the **request message** sent from the **service cli
     </package>
     ```
     
-8. Next, head over to the **CMakeLists.txt** file of the **udemy_ros2_pkg** folder and add the following **boldified** lines of code. 
+8. Next, head over to the **CMakeLists.txt** file of the **udemy_ros2_pkg** folder and add the following lines of code to it. 
     
     ```python
     cmake_minimum_required(VERSION 3.8)
@@ -104,7 +104,7 @@ The node which **processes** the **request message** sent from the **service cli
     find_package(rclcpp REQUIRED)
     find_package(std_msgs REQUIRED)
     # Necessary import for using Custom Service Interfaces
-    **find_package(rosidl_default_generators REQUIRED)**  
+    find_package(rosidl_default_generators REQUIRED)
     
     if(BUILD_TESTING)
       find_package(ament_lint_auto REQUIRED)
@@ -115,11 +115,11 @@ The node which **processes** the **request message** sent from the **service cli
     
     # We need to tell our ros2 compiler - the exact specifics of the newly created custom service interface file - that it needs to have the IDL Code generated for.
     # This line of code should always come before the add_excutable blocks, if you are planning to use the generated custom interface in these executables.
-    **rosidl_generate_interfaces(${PROJECT_NAME} "srv/OddEvenCheck.srv" ADD_LINTER_TESTS)**                                                              
+    rosidl_generate_interfaces(${PROJECT_NAME} "srv/OddEvenCheck.srv" ADD_LINTER_TESTS)                                                             
      
     # Set support for using custom interfaces in C++ from this package
     # This line should always be below the "rosidl_generate_interfaces()" code - otherwise it will produce compilation error.
-    **rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")**
+    rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
     
     add_executable(publisher src/publisher.cpp) 
     ament_target_dependencies(publisher rclcpp std_msgs)
@@ -156,7 +156,7 @@ Just now when we compiled our workspace, ROS2 generated some new **C++ header fi
 
 We can see these header files at **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/include/udemy_ros2_pkg/udemy_ros2_pkg/srv** directory.
 
-![Untitled](Chapter%2013%20Creating%20A%20Custom%20Service%20Interface%20(C+%208b595c69713a4763ad486969101c75af/Untitled%201.png)
+![Untitled](Images/Chapter13/Untitled%201.png)
 
 Now we have successfully created our **OddEvenCheck.srv** custom interface file and integrated it with our workspace.
 
@@ -172,8 +172,8 @@ source install/setup.bash
 ros2 interface list
 ```
 
-![Untitled](Chapter%2013%20Creating%20A%20Custom%20Service%20Interface%20(C+%208b595c69713a4763ad486969101c75af/Untitled%202.png)
+![Untitled](Images/Chapter13/Untitled%202.png)
 
 We can also see the contents of the **OddEvenCheck.srv** interface using the `ros2 interface show udemy_ros2_pkg/srv/OddEvenCheck` command:
 
-![Untitled](Chapter%2013%20Creating%20A%20Custom%20Service%20Interface%20(C+%208b595c69713a4763ad486969101c75af/Untitled%203.png)
+![Untitled](Images/Chapter13/Untitled%203.png)

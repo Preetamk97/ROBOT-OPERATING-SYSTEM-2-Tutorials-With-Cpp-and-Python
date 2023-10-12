@@ -2,11 +2,8 @@
 
 In this lesson, we are going to create a **C++ Service Client Node** for the **OddEvenCheck.srv** custom service interface that we created in the last lesson.
 
-<aside>
-💡 **Service Client** 
-The node which sends a **request message** to the **service server** node.
+> 💡 **Service Client** : The node which sends a **request message** to the **service server** node.
 
-</aside>
 
 1. Open your **VS Code** in **Workspace** **Directory**.
 2. Create a **service_client.cpp** file in the **src** directory of the **udemy_ros2_pkg** package folder.
@@ -54,9 +51,9 @@ The node which sends a **request message** to the **service server** node.
     
 4. Save the file and head over to the **CMakeLists.txt** file within the **udemy_ros2_pkg** package folder. 
     
-    Do the following **boldified** additions to the **CMakeLists.txt** file:
+    Add the following code to the **CMakeLists.txt** file:
     
-    ```c
+    ```cmake
     cmake_minimum_required(VERSION 3.8)
     project(udemy_ros2_pkg)
     
@@ -98,16 +95,16 @@ The node which sends a **request message** to the **service server** node.
     add_executable(rpm_subscriber src/rpm_subscriber.cpp)
     ament_target_dependencies(rpm_subscriber rclcpp std_msgs)
     
-    **add_executable(service_client src/service_client.cpp)
+    add_executable(service_client src/service_client.cpp)
     ament_target_dependencies(service_client rclcpp std_msgs)
-    target_link_libraries(service_client "${cpp_typesupport_target}")**
+    target_link_libraries(service_client "${cpp_typesupport_target}")
     
     install(TARGETS 
             publisher 
             subscriber
             rpm_publisher
             rpm_subscriber
-    				**service_client**
+    				service_client
             DESTINATION lib/${PROJECT_NAME}
     )
     
@@ -128,7 +125,7 @@ The node which sends a **request message** to the **service server** node.
     ros2 run udemy_ros2_pkg service_client
     ```
     
-    ![Untitled](Chapter%2014%20Creating%20A%20Service%20Client%20(C++)%20a8c4678d503f45929ecfd84bf2ea1946/Untitled.png)
+    ![Untitled](Images/Chapter14/Untitled.png)
     
 7. Open a **parallel** terminal and run the following command:
     
@@ -137,4 +134,4 @@ The node which sends a **request message** to the **service server** node.
     #To see the list of active services
     ```
     
-    ![Untitled](Chapter%2014%20Creating%20A%20Service%20Client%20(C++)%20a8c4678d503f45929ecfd84bf2ea1946/Untitled%201.png)
+    ![Untitled](Images/Chapter14/Untitled%201.png)

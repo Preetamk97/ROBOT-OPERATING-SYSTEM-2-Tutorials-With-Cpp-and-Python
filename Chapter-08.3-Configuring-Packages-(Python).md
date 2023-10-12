@@ -10,7 +10,7 @@ To run these **python nodes** we would
 
 In this lesson, we will be looking at how we can configure our ROS2 package (*udemy_ros2_pkg*) so that we we can to **run our nodes** (*publisher.py & subscriber.py*) without having to navigate to the package’s **ros2_py_udemy_tutorial/src/udemy_ros2_pkg/scripts** directory every time - from any terminal opened from **ros2_py_udemy_tutorial** workspace folder - using **`ros2 run`** terminal command. 
 
-# Configuring Our **`ament_cmake`** Build-Type Package
+## Configuring Our **`ament_cmake`** Build-Type Package
 
 In a previous lesson, we created the **udemy_ros2_pkg** package and specified the **build-type** as **ament_cmake** in the terminal command: `ros2 pkg create udemy_ros2_pkg --build-type ament_cmake`. This tells ROS2 to compile our package based on the instructions specified in our package’s **CMakeLists.txt** file.
 
@@ -31,15 +31,15 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
 - Save the **package.xml** file and open **CMakeLists.txt** file.
 - Add the following code to **CMakeLists.txt** file.
     
-    ```
+    ```cmake
     # find dependencies
     find_package(ament_cmake REQUIRED)
     # Adding the below 2 dependencies for configuring our python 
     # scripts stored inside /scripts folder into this package.
-    **find_package(ament_cmake_python REQUIRED)** 
-    **find_package(rclpy REQUIRED)** 
+    find_package(ament_cmake_python REQUIRED) 
+    find_package(rclpy REQUIRED) 
     
-    **ament_python_install_package(scripts)**
+    ament_python_install_package(scripts)
     # The above line of code is used to specify that our package contains Python scripts
     # inside a "Python Package Folder" named "scripts". 
     # It is a command provided by the ROS2 build system (ament) to configure 
@@ -48,18 +48,19 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
     # Make sure that the "scripts" folder has atleast a blank file named __init__.py inside it. 
     
     # Specifying our python scripts.
-    **install(PROGRAMS
+    install(PROGRAMS
       scripts/publisher.py
       scripts/subscriber.py
       DESTINATION lib/${PROJECT_NAME}
-    )**
+    )
     ```
     
-    <aside>
+    <br>
+
     💡 **NOTE**: 
     **ament_package()** should always be the last line of your **CMakeLists.txt** file. You should not add any extra code below it.
     
-    </aside>
+    <br>
     
 
 - Lastly, since **ament_cmake** build-type packages are primarily meant for working with **C++** codes, we need to tell ROS explicitly about how we want to execute our Python scripts.
@@ -74,10 +75,10 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
     
 
 - Now we are done with our package configurations.
-- **Building the Workspace:** Open a new terminal from the **ros2_py_udemy_tutorial** workspace ****directory and run the following command :
+- **Building the Workspace:** Open a new terminal from the **ros2_py_udemy_tutorial** workspace directory and run the following command :
     
     ```bash
-    colcon build ****
+    colcon build 
     ```
     
 - **Sourcing Workspace to the Terminal :** Take any terminal from the **ros2_py_udemy_tutorial** workspace and run the following command.
@@ -86,7 +87,7 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
     source install/setup.bash
     ```
     
-    - To check if our workspace has sourced properly with our terminal and that our terminal is now aware of our **ros2_py_udemy_tutorial** workspace and all of the packages inside it (currently only **udemy_ros2_pkg**) run the `ros2 pkg list` command from **the same terminal**. A long list of various ROS2 packages will appear and in that you should also see the name of our ******************udemy_ros2_pkg****************** package.
+    - To check if our workspace has sourced properly with our terminal and that our terminal is now aware of our **ros2_py_udemy_tutorial** workspace and all of the packages inside it (currently only **udemy_ros2_pkg**) run the `ros2 pkg list` command from **the same terminal**. A long list of various ROS2 packages will appear and in that you should also see the name of our **udemy_ros2_pkg** package.
         
         ```bash
         ros2 pkg list
@@ -99,14 +100,14 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
         ```
         
     
-- **Running the Publisher Node (*publisher.py*)** : Open a **new** terminal from the **ros2_py_udemy_tutorial** workspace ****directory and run the following commands:
+- **Running the Publisher Node (*publisher.py*)** : Open a **new** terminal from the **ros2_py_udemy_tutorial** workspace directory and run the following commands:
     
     ```bash
     source install/setup.bash
     ros2 run udemy_ros2_pkg publisher.py
     ```
     
-- **Running the Subscriber Node (*subscriber.py*)** : Open a **new** terminal from the **ros2_py_udemy_tutorial** workspace ****directory and run the following commands:
+- **Running the Subscriber Node (*subscriber.py*)** : Open a **new** terminal from the **ros2_py_udemy_tutorial** workspace directory and run the following commands:
     
     ```bash
     source install/setup.bash
@@ -115,10 +116,8 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
     
 
 > **NOTE** : 
-To build only a **specific** package when there are **multiple** packages in your **workspace** - run the following command from any terminal opened from your **workspace** directory:
-
-`colcon build --packages-select specific_package_name`
-> 
+To build only a **specific** package when there are **multiple** packages in your **workspace** - run the following command from any terminal opened from your **workspace** directory: <br>
+    `colcon build --packages-select specific_package_name`
 
 # Configuring **`ament_python`** Build-Type Packages
 
@@ -129,24 +128,24 @@ This build-type is used when our package is/will be solely composed of only **py
 - Create a new package using `ament_python` build-type named **my_py_pkg** inside your **ros2_py_udemy_tutorial/src** directory.
     
     ```bash
-    ros2 pkg create **my_py_pkg** --build-type ament_python
+    ros2 pkg create my_py_pkg --build-type ament_python
     ```
     
 
 - The folder structure of **my_py_pkg** package (*which is an `ament_python` build-type package*) looks like below:
     
-    ![Untitled](Chapter%208%203%20Configuring%20Packages%20(Python)%2030109325b8a54660bd32956d14399ea0/Untitled.png)
+    ![Untitled](Images/Chapter8.3/Untitled.png)
     
 
 - We will store all our **.py** **scripts** for the ***my_py_pkg* package** inside the **my_py_pkg folder** of this package (*same names*). You will also notice that the **my_py_pkg** folder (that is inside the **my_py_pkg** package) already contains an **__init__.py** file inside it.
     
-    ![Untitled](Chapter%208%203%20Configuring%20Packages%20(Python)%2030109325b8a54660bd32956d14399ea0/Untitled%201.png)
+    ![Untitled](Images/Chapter8.3/Untitled%201.png)
     
 
 - Open your **ros2_py_udemy_tutorial** workspace directory from your VS Code IDE.
 - Copy and paste the files **publisher.py** & **subscriber.py** from the **udemy_ros2_pkg/scripts** folder into the **my_py_pkg/my_py_pkg** folder.
     
-    ![Untitled](Chapter%208%203%20Configuring%20Packages%20(Python)%2030109325b8a54660bd32956d14399ea0/Untitled%202.png)
+    ![Untitled](Images/Chapter8.3/Untitled%202.png)
     
 
 > Also, remove the `#! /usr/bin/env python3`  line of code from the top of each of these files (**publisher.py** & **subscriber.py** files inside **my_py_pkg/my_py_pkg** folder).
@@ -192,8 +191,8 @@ colcon build --packages-select my_py_pkg
 Open a new terminal from the **ros2_py_udemy_tutorial** workspace directory and run the below commands:
 
 ```bash
-**source install/setup.bash
-ros2 run my_py_pkg my_publisher**
+source install/setup.bash
+ros2 run my_py_pkg my_publisher
 
 # ros2 run package_name executable_name
 ```
@@ -203,8 +202,8 @@ ros2 run my_py_pkg my_publisher**
 Open a new terminal from the **ros2_py_udemy_tutorial** workspace directory and run the below commands:
 
 ```bash
-**source install/setup.bash
-ros2 run my_py_pkg my_subscriber**
+source install/setup.bash
+ros2 run my_py_pkg my_subscriber
 
 # ros2 run package_name executable_name
 ```

@@ -15,13 +15,13 @@
     # If we do not give any name to the bag file, the default name generated will be the current date and time when the bag file is being created. 
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled.png)
+    ![Untitled](Images/Chapter18/Untitled.png)
     
     Now the bag file **test.bag** has been created inside your **Home** directory and it has started listening to all and any currently active topics over the ROS DDS.
     
 - The created bag file can be seen inside the **Home** directory with the same name (**test.bag**).
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%201.png)
+    ![Untitled](Images/Chapter18/Untitled%201.png)
     
 - As long as the last terminal is open and alive, the **test.bag** will continue to **listen and record data** over any **topic** that gets live over ROS DDS.
 - Now, while keeping the **1st** **terminal** open, let us open a **2nd new terminal** and run the **rpm_publisher.py** node that we have written in some previous lesson. The **rpm_publisher.py** node publishes a constant value of a robot wheel’s **rpm**  over the topic **/rpm**. Run the below commands from the **2nd** terminal to start the **rpm_publisher.py** node :
@@ -32,7 +32,7 @@
     ros2 run udemy_ros2_pkg rpm_publisher.py
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%202.png)
+    ![Untitled](Images/Chapter18/Untitled%202.png)
     
 - **Keeping all the previous terminals alive**, open a **3rd terminal** and run the below commands to start the **rpm_subscriber.py** node. The **rpm_subscriber.py** node subscribes to the **/rpm** topic to get the robot wheel’s rpm value, and calculates the **speed** of the robot from this data and publishes it over another topic named **/speed**.
     
@@ -42,7 +42,7 @@
     ros2 run udemy_ros2_pkg rpm_subscriber.py
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%203.png)
+    ![Untitled](Images/Chapter18/Untitled%203.png)
     
 - To see the data that is being published over the topic **/rpm,** open a **4th new terminal** (while keeping the previous terminals alive) and run the below commands.
     
@@ -51,7 +51,7 @@
     ros2 topic echo /rpm
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%204.png)
+    ![Untitled](Images/Chapter18/Untitled%204.png)
     
 - To see the data that is being published over the topic **/speed,** open a **5th new terminal** (while keeping the previous terminals alive) and run the below command.
     
@@ -59,21 +59,21 @@
     ros2 topic echo /speed
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%205.png)
+    ![Untitled](Images/Chapter18/Untitled%205.png)
     
 
 - **Close all the terminals (ctrl + C)** before proceeding any further.
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%206.png)
+    ![Untitled](Images/Chapter18/Untitled%206.png)
     
 - Now, whatever data that has been published over the topics **/rpm** and **/speed** from the start till this moment has been recorded in the **test.bag** file.
-- To see the info about our bag file **test.bag**, open a **new terminal** (from the **Home** directory) ****and run the below command.
+- To see the info about our bag file **test.bag**, open a **new terminal** (from the **Home** directory) and run the below command.
     
     ```bash
     ros2 bag info test.bag 
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%207.png)
+    ![Untitled](Images/Chapter18/Untitled%207.png)
     
 - To playback the bag file contents, run the below command from the same terminal as above step.
     
@@ -84,7 +84,7 @@
     # '-l' flag is optional. If you do not want to play the bag file contents in an infinite loop, there is no need to mention '-l' in the command.
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%208.png)
+    ![Untitled](Images/Chapter18/Untitled%208.png)
     
 - **While keeping the previous terminal alive**, open a **2nd terminal** and run the following command.
     
@@ -92,25 +92,25 @@
     ros2 topic list
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%209.png)
+    ![Untitled](Images/Chapter18/Untitled%209.png)
     
     You can see that, although the nodes, **rpm_publisher.py** and **rpm_subscriber.py** are no longer running, we can still see the topics **/rpm** and **/speed** as active over ROS DDS - that is by the virtue of **test.bag** file.
     
-- To playback the contents of **/rpm** topic, **while keeping the terminal 1 alive**, open a **new 3rd terminal** and run the below command from it**:**
+- To playback the contents of **/rpm** topic, **while keeping the terminal 1 alive**, open a **new 3rd terminal** and run the below command from it:
     
     ```bash
     ros2 topic echo /rpm 
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%2010.png)
+    ![Untitled](Images/Chapter18/Untitled%2010.png)
     
-- To playback the contents of **/speed** topic, **while keeping the terminal 1 alive**,  open a **new 4th terminal** and run the below command from it**:**
+- To playback the contents of **/speed** topic, **while keeping the terminal 1 alive**,  open a **new 4th terminal** and run the below command from it:
     
     ```bash
     ros2 topic echo /speed
     ```
     
-    ![Untitled](Chapter%2018%20ROS2%20Bag%20Files%20a5d1921a9cfd4c62beffe794167b8aec/Untitled%2011.png)
+    ![Untitled](Images/Chapter18/Untitled%2011.png)
     
 
 And that is how we create a **Bag File** and play its contents later on.

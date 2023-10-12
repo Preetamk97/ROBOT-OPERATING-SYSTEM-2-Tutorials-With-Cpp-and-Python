@@ -2,18 +2,18 @@
 
 Up to this point, we have been running all of our ROS2 Python nodes independently — with each node needing its own dedicated terminal to run. We have also had to open extra terminals for actions such as **—** setting the value of a parameter.
 
-**Launch File** is a feature in **ROS2** that allows us to launch multiple nodes as well as additional independent terminal commands - all at the same time - from a single terminal - using one single **bash command.**
+**Launch File** is a feature in **ROS2** that allows us to launch multiple nodes as well as additional independent terminal commands - all at the same time - from a **single terminal** - using **one single** **bash command.**
 
 In this lesson, we will create a **launch file** to launch our **rpm_publisher.py** node along with some additional independent **bash commands**.
 
 1. Open your **ros2_py_udemy_tutorial** workspace folder in **VS Code.**
 2. Create a **new folder** named **launch** inside your **udemy_ros2_pkg** package folder.
     
-    ![Untitled](Chapter%2012%202%20Launch%20Files%20(Python)%20462b2339d72a4bfdb6fae170f7c65142/Untitled.png)
+    ![Untitled](Images/Chapter12.2/Untitled.png)
     
 3. **Right-click** on **launch → New File** → Name it **rpm_pub_node.launch.py** — this is a **python file (.py)** and inside this file, we are gonna add some **python code.** *(The **.launch** part is added **by convention** as a tribute to the ROS1 launch files which ended with .launch . You can also name this file as **rpm_pub_node_launch.py** and that is perfectly acceptable.)*
 
-![Untitled](Chapter%2012%202%20Launch%20Files%20(Python)%20462b2339d72a4bfdb6fae170f7c65142/Untitled%201.png)
+    ![Untitled](Images/Chapter12.2/Untitled%201.png)
 
 1. Add the following code to the newly created **rpm_pub_node.launch.py** file:
     
@@ -55,7 +55,7 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher.p
     ```
     
 2. **Save** the files and head over to the **CMakeLists.txt** file. 
-3. Do the following **Highlighted** additions to the **CMakeLists.txt** code :
+3. Add the following code to the **CMakeLists.txt** file :
     
     ```python
     cmake_minimum_required(VERSION 3.8)
@@ -89,10 +89,10 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher.p
       DESTINATION lib/${PROJECT_NAME}
     )
     
-    **install(DIRECTORY
+    install(DIRECTORY
             launch
             DESTINATION share/${PROJECT_NAME}/
-    )**
+    )
     
     if(BUILD_TESTING)
       find_package(ament_lint_auto REQUIRED)
@@ -118,11 +118,11 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher.p
     ros2 launch udemy_ros2_pkg rpm_pub_node.launch.py
     ```
     
-    ![Untitled](Chapter%2012%202%20Launch%20Files%20(Python)%20462b2339d72a4bfdb6fae170f7c65142/Untitled%202.png)
+    ![Untitled](Images/Chapter12.2/Untitled%202.png)
     
     Observe the highlighted portion of the output below:
     
-    ![Untitled](Chapter%2012%202%20Launch%20Files%20(Python)%20462b2339d72a4bfdb6fae170f7c65142/Untitled%203.png)
+    ![Untitled](Images/Chapter12.2/Untitled%203.png)
     
     The **[INFO] [rpm_publisher.py-1]** message are states that **rpm_publisher.py** node has been started successfully.
     
@@ -145,7 +145,7 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher.p
     ros2 topic echo rpm 
     ```
     
-    ![Untitled](Chapter%2012%202%20Launch%20Files%20(Python)%20462b2339d72a4bfdb6fae170f7c65142/Untitled%204.png)
+    ![Untitled](Images/Chapter12.2/Untitled%204.png)
     
 
-![Untitled](Chapter%2012%202%20Launch%20Files%20(Python)%20462b2339d72a4bfdb6fae170f7c65142/Untitled%205.png)
+![Untitled](Images/Chapter12.2/Untitled%205.png)
