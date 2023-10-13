@@ -1,14 +1,14 @@
 # Chapter 11.2. ROS2 Parameters(Python)
 
-# Definition:
+## Definition:
 
 ROS2 parameters are **variables** used to store **values** that can be changed during **runtime** - from the **terminal**. ROS2 parameters are stored in a centralized parameter server, which allows nodes to access and modify them dynamically. ROS2 parameters can be of various types, including integers, floating-point numbers, strings, booleans, arrays, and more.
 
-# Purpose/Use of Parameters
+## Purpose/Use of Parameters
 
 Let us once again take a look at the **rpm_subscriber.py** source code - which we created in **Project 1.2**
 
-## **rpm_subscriber.py** code:
+### **rpm_subscriber.py** code:
 
 ```python
 #! /usr/bin/env python3
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
 Here, we have hard-coded the value of **DIAMETER** using the `DIAMETER = 10.0` line of code. Now, if we need to change the value of **DIAMETER** *(lets say we want to use this code for some different robot with wheels of different diameter)***,** we would usually think of **directly editing** **the hard-coded value of DIAMETER variable** in **rpm_subscriber.py** code i.e at `DIAMETER = 10.0` . But by using the **ROS Parameter Concept,** we can change the value of the **DIAMETER** that is being used by the **rpm_subscriber.py** code — without directly editing the source code file **rpm_subscriber.py** — from the **terminal** itself.
 
-# Some Useful Terminal Commands for Working With ROS Parameters
+## Some Useful Terminal Commands for Working With ROS Parameters
 
 1. Open a **new terminal** in the **workspace** folder → Run the **rpm_publisher.py** code using the below command.
 
@@ -107,7 +107,7 @@ Here, we have hard-coded the value of **DIAMETER** using the `DIAMETER = 10.0` l
 
 ![Untitled](Images/Chapter11.2/Untitled%205.png)
 
-# Implementing ROS2 Parameters Concept in rpm_subscriber.py Source Code
+## Implementing ROS2 Parameters Concept in rpm_subscriber.py Source Code
 
 ```python
 #! /usr/bin/env python3

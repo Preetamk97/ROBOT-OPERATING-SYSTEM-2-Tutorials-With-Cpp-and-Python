@@ -76,7 +76,7 @@ Before actually diving into configuring VS Code for easy compilation of our ROS2
 - That is why we get the **No executable found** response in the terminal.
 
 
-    > **💡The problem with `symlink-install` build** : If we build our workspace using `colcon build --symlink-install` command, then all the **.py** files inside all the **src/package_name/scripts** folders of the workspace will be **non-executable** by default. So, we will not be able to run any of the **.py scripts** from any of the packages inside the workspace - because they are **non-executable** files.
+    > **💡 The problem with `symlink-install` build** : If we build our workspace using `colcon build --symlink-install` command, then all the **.py** files inside all the **src/package_name/scripts** folders of the workspace will be **non-executable** by default. So, we will not be able to run any of the **.py scripts** from any of the packages inside the workspace - because they are **non-executable** files.
 
 
 - We can also check this by running the below commands on any terminal opened in **ros2_py_udemy_tutorial** workspace folder.

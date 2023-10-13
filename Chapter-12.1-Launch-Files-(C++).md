@@ -153,16 +153,16 @@ In this lesson, we will create a **launch file** to launch our **rpm_publisher**
 1. To check if our **rpm_publisher** node is running properly - run the following commands from a **new terminal:**
     
     ```bash
-    #Checking the list of active ros2 nodes
+    # Checking the list of active ros2 nodes
     ros2 node list
     
-    #Checking the list of active ros2 topics
+    # Checking the list of active ros2 topics
     ros2 topic list
     
-    #Checking the value of **rpm_val** parameter of **rpm_publisher** node which we deliberately changed in the **rpm_pub_node_launch.py** file to the value of 5.0
+    # Checking the value of **rpm_val** parameter of **rpm_publisher** node which we deliberately changed in the **rpm_pub_node_launch.py** file to the value of 5.0
     ros2 param get rpm_pub_node rpm_val
     
-    #To see the messages published by rpm_publisher node through rpm topic
+    # To see the messages published by rpm_publisher node through rpm topic
     ros2 topic echo rpm 
     ```
     

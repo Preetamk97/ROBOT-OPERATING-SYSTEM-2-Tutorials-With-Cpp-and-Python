@@ -1,6 +1,6 @@
 # Project 3.2. Using OpenCV With ROS2 Services (Python)
 
-# Problem Statement
+## Problem Statement
 
 1. Create a **custom service interface** named **TurnCameraService.srv** which consists of a **request** message named “**angle**” of type “**float32**” and a **response** message named **“image”** of type “**sensor_msgs/Image**”.
 2. Create a **Service Client** node named **turn_camera_client.py** which uses the **TurnCameraService.srv** custom service interface to **send** the **request** message **“angle”** to a Service Client node via a service named **/turn_camera -** to turn the robot camera to a specified angle.
@@ -9,12 +9,12 @@
 5. Now, since we do not have a real robot and haven’t learned about making simulations yet, we are just going to have some pre-taken images - which are named by an angle - and store them inside the **ros2_py_udemy_tutorial/src/udemy_ros2_pkg/images** folder - from where we can use them in our code and return one of these images based on the **request** message **angle.**
 6. You can click some images on your own. Name them one by one as -30, -15, 0, 15 & 30 respectively. Store these images inside the **ros2_py_udemy_tutorial/src/udemy_ros2_pkg/images** folder.
 
-# Additional Software Requirements
+## Additional Software Requirements
 
 1. **OpenCV** library which is a free open-source computer vision library.
 2. **CVBridge** package which is a **ROS2** **package** that helps us to convert **images** from **ROS Image Message** type to **OpenCV Image** type and vice-versa.
 
-# Installing OpenCV and CVBridge
+## Installing OpenCV and CVBridge
 
 ```bash
 sudo apt update
@@ -44,21 +44,21 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
     ![Untitled](Images/Project3.2/Untitled%201.png)
     
 
-# Include Dependencies in `package.xml`
+## Include Dependencies in `package.xml`
 
 ```xml
 <depend>OpenCV</depend>
 <depend>cv_bridge</depend>
 ```
 
-# Include Dependencies in `CMakeLists.txt`
+## Include Dependencies in `CMakeLists.txt`
 
 ```python
 find_package(OpenCV REQUIRED)  
 find_package(cv_bridge REQUIRED)
 ```
 
-# Write the code for **`TurnCameraService.srv`** Custom Service Interface
+## Write the code for **`TurnCameraService.srv`** Custom Service Interface
 
 ```bash
 float32 angle  # Request Message
@@ -72,7 +72,7 @@ sensor_msgs/Image image  # Response Message
 # Here, while mentioning the type of response message "image", we do not use /msg/ explicitly because ROS knows that we cannot use any other interface - other than the "Message" type interfaces as datatypes for request and response messages, while defining a custom service interface.
 ```
 
-# Include **`TurnCameraService.srv`** Custom Service Interface in `CMakeLists.txt` file
+## Include **`TurnCameraService.srv`** Custom Service Interface in `CMakeLists.txt` file
 
 ```python
 # Adding the below dependency since we are using sensor_msgs library in 
@@ -95,20 +95,20 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 # therefore, we need to include this complete package of sensor_msgs as a dependency in the above code of rosidl_generate_interfaces.
 ```
 
-# Importing OpenCV and CvBridge Into the Python Code:
+## Importing OpenCV and CvBridge Into the Python Code:
 
 ```python
 import cv2
 from cv_bridge import CvBridge
 ```
 
-# Converting ROS Image Message into OpenCV Image Format
+## Converting ROS Image Message into OpenCV Image Format
 
 ```python
 opencv_image = CvBridge().imgmsg_to_cv2(ros_image) 
 ```
 
-# Display Image In OpenCV Window
+## Display Image In OpenCV Window
 
 ```python
 cv2.imshow("Display Window Name", image)
@@ -118,22 +118,22 @@ cv2.waitKey(0)  # Notice that the K of waitKey is capital.
 cv2.destroyAllWindows()  # Closing all opencv windows.
 ```
 
-# Reading An Image From File
+## Reading An Image From File
 
 ```python
 opencv_image = cv2.imread(complete_file_location)
 ```
 
-# Converting OpenCV Image To ROS Image Message
+## Converting OpenCV Image To ROS Image Message
 
 ```python
 opencv_image = cv2.imread(complete_file_location)
 ros_image = CvBridge().cv2_to_imgmsg(opencv_image)
 ```
 
-# Completed Project Code:
+## Completed Project Code:
 
-## 1. `package.xml`
+### 1. `package.xml`
 
 ```xml
 <?xml version="1.0"?>
@@ -173,7 +173,7 @@ ros_image = CvBridge().cv2_to_imgmsg(opencv_image)
 </package>
 ```
 
-## 2. `CMakeLists.txt`
+### 2. `CMakeLists.txt`
 
 ```python
 cmake_minimum_required(VERSION 3.8)
@@ -258,7 +258,7 @@ endif()
 ament_package()
 ```
 
-## 3. `TurnCameraService.srv`
+### 3. `TurnCameraService.srv`
 
 ```python
 # Request Message
@@ -268,7 +268,7 @@ float32 angle
 sensor_msgs/Image image
 ```
 
-## 4. `turn_camera_server.py`
+### 4. `turn_camera_server.py`
 
 ```python
 #! /usr/bin/env python3
@@ -325,7 +325,7 @@ if __name__=='__main__':
     main()
 ```
 
-## 5. `turn_camera_client.py`
+### 5. `turn_camera_client.py`
 
 ```python
 #! /usr/bin/env python3
@@ -383,6 +383,6 @@ if __name__=='__main__':
     main()
 ```
 
-# Complete Workspace Structure:
+## Complete Workspace Structure:
 
 ![Untitled](Images/Project3.2/Untitled%201.png)

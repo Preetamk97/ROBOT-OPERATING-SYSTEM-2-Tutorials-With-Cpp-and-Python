@@ -35,7 +35,7 @@ The node which **processes** the **request message** sent from the **service cli
 4. Under the **udemy_ros2_pkg** package folder, create a new folder named **srv.** Inside this **srv** folder, we are going to create our custom ROS2 service interface files.
 5. Create a new file inside the **srv** folder named **OddEvenCheck.srv .**
     
-    > *Note that the custom **.srv** files follow the **PascalCasing** Convention for naming.*
+    > **💡** *Note that the custom **.srv** files follow the **PascalCasing** Convention for naming.*
     > 
 6. Add the following code to **OddEvenCheck.srv** and save the file.
     

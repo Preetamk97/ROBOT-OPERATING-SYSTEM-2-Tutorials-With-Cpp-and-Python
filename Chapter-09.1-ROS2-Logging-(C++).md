@@ -4,19 +4,19 @@ In this lesson we will briefly talk about the **ROS 2 Logging System.**
 
 1. Open the **Home** directory on your **Ubuntu** system → Check **Show Hidden Files**.
 
-![Untitled](Images/Chapter9.1/Untitled.png)
+    ![Untitled](Images/Chapter9.1/Untitled.png)
 
 1. Open **.ros/log** folder.
 
-![Untitled](Images/Chapter9.1/Untitled%201.png)
+    ![Untitled](Images/Chapter9.1/Untitled%201.png)
 
 1. Inside **/home/pritam/.ros/log** folder , we can see the **log files** that gets generated whenever we run our nodes (**publisher** & **subscriber**) in the terminal.
 
-![Untitled](Images/Chapter9.1/Untitled%202.png)
+    ![Untitled](Images/Chapter9.1/Untitled%202.png)
 
-For now, delete all the log files, so that we can create new fresh log files for each **publisher** node and **subscriber** node.
+    For now, delete all the log files, so that we can create new fresh log files for each **publisher** node and **subscriber** node.
 
-![Untitled](Images/Chapter9.1/Untitled%203.png)
+    ![Untitled](Images/Chapter9.1/Untitled%203.png)
 
 1. Open a **new terminal** inside the **ros2_cpp_udemy_tutorial** workspace and from there, run the **subscriber** node using the following commands:
     
@@ -34,13 +34,13 @@ For now, delete all the log files, so that we can create new fresh log files for
     
 3. After both the nodes get successfully started - Use **Ctrl+C** on both the terminals to stop both the node operations.
 
-![Untitled](Images/Chapter9.1/Untitled%204.png)
+    ![Untitled](Images/Chapter9.1/Untitled%204.png)
 
-Notice the **^C[INFO] [1674548072.891387889] [rclcpp]: signal_handler(signum=2)** &    **^C[INFO] [1674548069.829954488] [rclcpp]: signal_handler(signum=2)**  lines that gets logged on the terminal after we hit **Ctrl+C** on both the terminals.
+    Notice the **^C[INFO] [1674548072.891387889] [rclcpp]: signal_handler(signum=2)** &    **^C[INFO] [1674548069.829954488] [rclcpp]: signal_handler(signum=2)**  lines that gets logged on the terminal after we hit **Ctrl+C** on both the terminals.
 
 1. Now if we check the **log files** inside **/home/pritam/.ros/log** folder, we will find a log file for each of the **publisher** and **subscriber** nodes - which we ran just now on a terminal.
 
-![Untitled](Images/Chapter9.1/Untitled%205.png)
+    ![Untitled](Images/Chapter9.1/Untitled%205.png)
 
 1. If we open the both the log files, we can see the **last log message** that we saw on the terminal of both **publisher** and **subscriber** nodes after hitting **Ctrl+C** to stop the terminal operations.
     

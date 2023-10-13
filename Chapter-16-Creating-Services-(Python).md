@@ -30,7 +30,7 @@
 - Create a new folder **srv** inside the **udemy_ros2_pkg** package folder — to store our custom service interfaces.
 - Inside **srv** folder, create a **new file** named **OddEvenCheck.srv.**
     
-    > 💡 **Note**: By convention, **interface** files in ROS always follow **Pascal Casing Format** (Ex - OutOfBoundsException) for naming.
+    > **💡 Note**: By convention, **interface** files in ROS always follow **Pascal Casing Format** (Ex - OutOfBoundsException) for naming.
 
     
 - Add the following code to **OddEvenCheck.srv** file.
@@ -44,6 +44,7 @@
     **int64** & **string** are two of many **built-in** **ROS2 Primitive Datatypes** that are used for defining various messages (like *integers, booleans, strings*) that nodes share among each other . Below table lists some available built-in primitive datatypes in ROS that we can use when creating custom interfaces.
     
     ![Untitled](Images/Chapter16/Untitled%202.png)
+    <br>(*Image taken directly from ROS 2 Humble Documentation* - https://docs.ros.org/en/humble/Concepts/Basic/About-Interfaces.html)
     
 
 - Save the file **OddEvenCheck.srv.**
@@ -82,8 +83,7 @@
 - With that, we have set up our package to be able to use our new **custom service interface** that we have just created — in our python codes.
 - Now, since we have recently added a new file (**OddEvenCheck.srv**) to our package, therefore, make sure to recompile the workspace once before proceeding any further.
     
-    > **Note**: This time during compilation of our workspace,  our **udemy_ros2_pkg** package will generate some **IDL** codes - for us to be able to use our **custom service interface** in our python codes - and hence it may take a bit more time for our workspace compilation than usual.
-    > 
+    > **💡 Note**: This time during compilation of our workspace,  our **udemy_ros2_pkg** package will generate some **IDL** codes - for us to be able to use our **custom service interface** in our python codes - and hence it may take a bit more time for our workspace compilation than usual.
 
 - Now open a new terminal in the workspace folder and run the following commands.
     
@@ -167,7 +167,7 @@
 - Save the **service_sever.py** file.
 - Open the **CMakeLists.txt** file and add the following code to it.
     
-    ```c
+    ```cmake
     # Specifying our python scripts.
     install(PROGRAMS
       scripts/service_server.py

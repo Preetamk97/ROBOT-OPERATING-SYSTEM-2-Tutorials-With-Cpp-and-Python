@@ -103,9 +103,6 @@ In this lesson, we will be doing a project walkthrough to explain how to utilise
     # geometry_msgs/msg/Point is the type of message interface that we are using inside the Navigate.action custom interface as goal message datatype.
     # Since these message interfaces does not belong to the group of standard message intefaces (std_msgs/msg/**), therefore, we need to include these complete interface collections (sensor_msgs and geometry_msgs) as dependencies in the above code of rosidl_generate_interfaces.
     ```
-    
-
----
 
 - That is it for configuration of our package for the newly created custom action interface. Rebuild the workspace before proceeding further.
     

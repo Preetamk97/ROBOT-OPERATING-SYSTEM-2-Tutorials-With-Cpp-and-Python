@@ -114,5 +114,3 @@
     
 
 And that is how we create a **Bag File** and play its contents later on.
-
----

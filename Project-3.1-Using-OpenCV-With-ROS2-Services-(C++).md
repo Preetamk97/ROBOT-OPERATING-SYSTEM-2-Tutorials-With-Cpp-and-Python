@@ -1,6 +1,6 @@
 # Project 3.1. Using OpenCV With ROS2 Services (C++)
 
-# Problem Statement
+## Problem Statement
 
 1. Create a **custom service interface** named **TurnCameraService.srv** which consists of a **request** message named “**angle**” of type “**float32**” and a **response** message named **“image”** of type “**sensor_msgs/Image**”.
 2. Create a **Service Client** node named **angle_client.cpp** which uses the **TurnCameraService.srv** custom service interface to **send** the **request** message **“angle”** to a Service Client node via a service named **/turn_camera_service -** to turn the robot camera to a specified angle.
@@ -8,12 +8,12 @@
 4. The **Service Client** node should display the image received from the **Service Server.** 
 5. Now, since we do not have a real robot and haven’t learned about making simulations yet, we are just going to have some pre-taken images - which are named by an angle - and store them inside the **ros2_cpp_udemy_tutorial/src/udemy_ros2_pkg/images** folder - from where we can use them in our code and return one of these images based on the **request** message **angle.**
 
-# Additional Software Requirements
+## Additional Software Requirements
 
 1. **OpenCV** library which is a free open-source computer vision library.
 2. **CVBridge** package which is a **ROS2** **package** that helps us to convert **images** from **ROS Image Message** type to **OpenCV Image** type and vice-versa.
 
-# Step1. Installing OpenCV and CVBridge
+## Step1. Installing OpenCV and CVBridge
 
 ```bash
 sudo apt update
@@ -43,7 +43,7 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
     ![Untitled](Images/Project3.1/Untitled%201.png)
     
 
-# Step 2. Include Dependencies in `package.xml`
+## Step 2. Include Dependencies in `package.xml`
 
 ```xml
 <depend>sensor_msgs</depend>
@@ -51,7 +51,7 @@ sudo apt install ros-$ROS_DISTRO-cv-bridge # Installing CV Bridge
 <depend>cv_bridge</depend>
 ```
 
-# Step 3. Include Dependencies in `CMakeLists.txt`
+## Step 3. Include Dependencies in `CMakeLists.txt`
 
 ```cmake
 find_package(sensor_msgs REQUIRED)  
@@ -59,9 +59,9 @@ find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
 ```
 
-# Step 4. Write the code for **`TurnCameraService.srv`** Custom Service Interface
+## Step 4. Write the code for **`TurnCameraService.srv`** Custom Service Interface
 
-```srv
+```bash
 float32 angle  # Request Message
 ---
 sensor_msgs/Image image  # Response Message
@@ -73,7 +73,7 @@ sensor_msgs/Image image  # Response Message
 # Here, while mentioning the type of response message "image", we do not use /msg/ explicitly because ROS knows that we cannot use any other interface - other than the "Message" type interfaces as datatypes for request and response messages, while defining a custom service interface.
 ```
 
-# Step 5. Include **`TurnCameraService.srv`** Custom Service Interface in `CMakeLists.txt` file
+## Step 5. Include **`TurnCameraService.srv`** Custom Service Interface in `CMakeLists.txt` file
 
 ```python
 # Modify the existing CMakeLists.txt code here
@@ -85,10 +85,10 @@ rosidl_generate_interfaces(${PROJECT_NAME}
                           ADD_LINTER_TESTS )
 ```
 
-> **Note:** When we use any other message interface - other than the "std_msgs/msg/" primitive datatype interfaces (ex - int64, float32, float64, bool, string, etc.) - to define our request or response message in a custom service interface (ex- TurnCameraService.srv) - then we must MENTION the name of the message package (sensor_msgs) that we are using in the interface - under the DEPENDENCIES section in the above line of code.
+> **💡 #Note:** When we use any other message interface - other than the "std_msgs/msg/" primitive datatype interfaces (ex - int64, float32, float64, bool, string, etc.) - to define our request or response message in a custom service interface (ex- TurnCameraService.srv) - then we must MENTION the name of the message package (sensor_msgs) that we are using in the interface - under the DEPENDENCIES section in the above line of code.
 > 
 
-# Step 6. Write the code for `angle_client.cpp`
+## Step 6. Write the code for `angle_client.cpp`
 
 ```cpp
 #include "rclcpp/rclcpp.hpp"  // This line includes the header file for the ROS Client Library For C++ (rclcpp) API , which provides the basic functionality required to create ROS2 nodes in C++.
@@ -143,7 +143,7 @@ int main(int argc, char* argv[]){
 }
 ```
 
-# Step 7. Add the `angle_client` executable to CMakeLists.txt
+## Step 7. Add the `angle_client` executable to CMakeLists.txt
 
 ```cmake
 add_executable(angle_client src/angle_client.cpp)
@@ -162,7 +162,7 @@ install(TARGETS
 )
 ```
 
-# Step 8. Write the code for `image_server.cpp`
+## Step 8. Write the code for `image_server.cpp`
 
 ```cpp
 // The code is designed to receive a float 'angle' value from a service client node and return an image corresponding to that 'angle' value.
@@ -338,7 +338,7 @@ int main(int argc, char* argv[])
 }
 ```
 
-# Step 9. Add the `image_server` executable to CMakeLists.txt
+## Step 9. Add the `image_server` executable to CMakeLists.txt
 
 ```cmake
 add_executable(image_server src/image_server.cpp)
@@ -359,6 +359,7 @@ install(TARGETS
 ```
 
 ## Step 10. Finally, **save all the files and build the workspace.**
+
 
 ## Bash Command To Run `image_server` Executable (Terminal A) :
 
