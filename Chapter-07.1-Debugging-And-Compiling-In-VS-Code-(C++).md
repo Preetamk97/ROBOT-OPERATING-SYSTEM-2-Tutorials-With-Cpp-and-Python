@@ -207,7 +207,7 @@ Now uncomment the `publisher_ = this->create_publisher<std_msgs::msg::String>("h
     - Open a **new Ubuntu terminal** separate from **VS Code.**
     - In there, run the following commands:
         
-        ```json
+        ```bash
         ros2 daemon stop
         ros2 daemon start
         ```
