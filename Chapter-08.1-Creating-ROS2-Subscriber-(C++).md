@@ -217,7 +217,7 @@ In this lesson, we are going to build a simple **subscriber node** using **C++**
     ![Untitled](Images/Chapter8.1/Untitled%201.png)
 
 
-    💡 After the workspace is successfully built, you can see the **subscriber** executable file inside **ros2_cpp_udemy_tutorial/build/udemy_ros2_pkg** directory and also its **symbolic link file** inside **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib/udemy_ros2_pkg** directory.
+> 💡 After the workspace is successfully built, you can see the **subscriber** executable file inside **ros2_cpp_udemy_tutorial/build/udemy_ros2_pkg** directory and also its **symbolic link file** inside **ros2_cpp_udemy_tutorial/install/udemy_ros2_pkg/lib/udemy_ros2_pkg** directory.
 
 ![Untitled](Images/Chapter8.1/Untitled%202.png)
 

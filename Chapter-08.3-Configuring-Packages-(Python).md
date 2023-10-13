@@ -54,14 +54,9 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
       DESTINATION lib/${PROJECT_NAME}
     )
     ```
-    
-    <br>
 
-    💡 **NOTE**: 
+    > 💡 **NOTE**: 
     **ament_package()** should always be the last line of your **CMakeLists.txt** file. You should not add any extra code below it.
-    
-    <br>
-    
 
 - Lastly, since **ament_cmake** build-type packages are primarily meant for working with **C++** codes, we need to tell ROS explicitly about how we want to execute our Python scripts.
     
@@ -115,7 +110,7 @@ So let us go ahead and configure our **udemy_ros2_pkg** package for running our 
     ```
     
 
-> **NOTE** : 
+> 💡 **NOTE** : 
 To build only a **specific** package when there are **multiple** packages in your **workspace** - run the following command from any terminal opened from your **workspace** directory: <br>
     `colcon build --packages-select specific_package_name`
 
@@ -148,8 +143,7 @@ This build-type is used when our package is/will be solely composed of only **py
     ![Untitled](Images/Chapter8.3/Untitled%202.png)
     
 
-> Also, remove the `#! /usr/bin/env python3`  line of code from the top of each of these files (**publisher.py** & **subscriber.py** files inside **my_py_pkg/my_py_pkg** folder).
-> 
+> 💡 Also, remove the `#! /usr/bin/env python3`  line of code from the top of each of these files (**publisher.py** & **subscriber.py** files inside **my_py_pkg/my_py_pkg** folder).
 
 ## Configuring the Package
 
@@ -157,15 +151,15 @@ This build-type is used when our package is/will be solely composed of only **py
     
     ```xml
     <!-- Adding these dependencies for configuring .py scripts created inside this package. -->
-    **<exec_depend>rclpy</exec_depend>
-    <exec_depend>std_msgs</exec_depend>**
+    <exec_depend>rclpy</exec_depend>
+    <exec_depend>std_msgs</exec_depend>
     <!-- Add dependencies for any other message types you will use below. -->
     ```
     
 
 - Add the following code to **setup.py** file of **my_py_pkg** package:
     
-    ```json
+    ```python
     entry_points={
             'console_scripts': [
                 # "executable_name = pkg_name.script_name:main_func_name"
@@ -182,7 +176,7 @@ We will not build the entire workspace of **ros2_py_udemy_tutorial** again. Inst
 
 Open a new terminal from the **ros2_py_udemy_tutorial** workspace directory and run the below command.
 
-```json
+```bash
 colcon build --packages-select my_py_pkg
 ```
 

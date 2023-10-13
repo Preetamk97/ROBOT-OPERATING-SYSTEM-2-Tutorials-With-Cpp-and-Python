@@ -65,7 +65,7 @@ My personal study notes on working with **ROBOT OPERATING SYSTEM 2 (ROS 2)** (**
 
 [Project 3.2: Using OpenCV With ROS2 Services (Python)](Project-3.2-Using-OpenCV-With-ROS2-Services-(Python).md)
 
-## Resources
+## References
 
 - [**Udemy Course : ROS2 Robotics Developer Course - Using ROS 2 in C++ by Raymond Andrade**](https://www.udemy.com/course/ros2-cpp-robotics-developer-course/)
 - [**Udemy Course : ROS2 Robotics Developer Course - Using ROS2 In Python by Raymond Andrade**](https://www.udemy.com/course/ros2-robotics-developer-course-using-ros2-in-python/)
@@ -73,3 +73,5 @@ My personal study notes on working with **ROBOT OPERATING SYSTEM 2 (ROS 2)** (**
 - [**rclcpp: ROS Client Library for C++ Documentation**](https://docs.ros2.org/foxy/api/rclcpp/index.html)
 - [**rclpy 0.6.1 documentation**](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiUxfuS5-qBAxUB-zgGHZ0EDFQQFnoECA4QAQ&url=https%3A%2F%2Fdocs.ros2.org%2Ffoxy%2Fapi%2Frclpy%2Findex.html&usg=AOvVaw03EwyjkTLitRanrFu_PFUx&opi=89978449)
 - **ChatGPT**
+
+

@@ -9,7 +9,7 @@ In this lesson, we are going to go over debugging our ROS 2 code and setting up 
 - Copy the **udemy_ros2_pkg** package folder from the **Ros2_Workspaces/ros2_cpp_udemy_tutorial/src** folder - that we just created and compiled in previous lessons - to the newly created **Ros2_Workspaces/debug_ws/src** folder.
 - Open your **VS Code** from the **debug_ws** folder.
 - From the **VS Code terminal -** run `colcon build` command. This will build and compile our entire  **debug_ws** workspace and will create the **install** and **build** folders in our **debug_ws.**
-- In the **VS Code Editor,** open the **publisher.cpp** file. ****
+- In the **VS Code Editor,** open the **publisher.cpp** file.
 - In this step, we are going to create t**he bug**. Inside the **HelloWorldPubNode()** constructor of **publisher.cpp** file  — comment out the **publisher** object initiation code line i.e
     
     `publisher_ = this->create_publisher<std_msgs::msg::String>("hello_world", 10);`
@@ -41,14 +41,14 @@ In this lesson, we are going to go over debugging our ROS 2 code and setting up 
         {
             auto message = std_msgs::msg::String();
             message.data = "hello world " + std::to_string(counter);
-            publisher_->publish(message);  **//Error location.**
+            publisher_->publish(message);  //Error location.
             counter++;
         }
     
     public:
         HelloWorldPubNode() : Node("hello_world_pub_node")
         {
-            **// publisher_ = this->create_publisher<std_msgs::msg::String>("hello_world", 10);**
+            // publisher_ = this->create_publisher<std_msgs::msg::String>("hello_world", 10);
     
             timer_ = this->create_wall_timer(
                 1s,
@@ -68,17 +68,15 @@ In this lesson, we are going to go over debugging our ROS 2 code and setting up 
     }
     ```
     
-   
-    💡 One thing to notice here is that, even though we have created an **error** in our code here, our VS Code Editor does not show us any indication of the error.
-    
-    
+    > 💡 One thing to notice here is that, even though we have created an **error** in our code here, our VS Code Editor does not show us any indication of the error.
+       
 - Now we will be compiling our workspace again. Run `colcon build` command from your **VS Code terminal**.
     
     While running the command, make sure that the terminal is opened in **Ros2_Workspaces/debug_ws** directory.
     
     We can see that, even though our code has **errors** — it gets compiled successfully. 
     
-    💡 Right now, our terminal is not aware of the **udemy_ros2_pkg** package that is inside the **src** folder of our **debug_ws** workspace - which can be checked using `ros2 pkg list` command. So to do this, we have to **source** the **install/setup.bash** of our **debug_ws** workspace. Next step is precisely for this purpose.
+    > 💡 Right now, our terminal is not aware of the **udemy_ros2_pkg** package that is inside the **src** folder of our **debug_ws** workspace - which can be checked using `ros2 pkg list` command. So to do this, we have to **source** the **install/setup.bash** of our **debug_ws** workspace. Next step is precisely for this purpose.
 
 - From the **Ros2_Workspaces/debug_ws** directory in our **VS Code terminal** run -
     
@@ -106,26 +104,18 @@ So lets learn how we can better debug our ROS 2 code.
     `ros2 run --prefix 'gdbserver localhost:3000' udemy_ros2_pkg publisher`
     
 
-    💡 Here, we are using a popular debugger called **GNU Debugger (GDB)** while running our executable node **publisher.** 
-    This will show us exactly where in our code the error is occurring.
-    
-    This command is used to run a ROS 2 package named "**udemy_ros2_pkg**" with the "**publisher**" node, and it also runs the command "**gdbserver localhost:3000**" as a **prefix**. The "**gdbserver**" command starts the **GNU Debugger (GDB)** **server** and tells the server to listen for connections on your **local machine (localhost)** on **port 3000**. So this command will run the **publisher** node of **udemy_ros2_pkg** package and also it will run the **gdbserver** command to create a server for another program i.e. the **GNU Debugger —** for listening to the **local machine (localhost)** on **port 3000** and connect to and interact with the code being run.
+    > 💡 Here, we are using a popular debugger called **GNU Debugger (GDB)** while running our executable node **publisher.** <br><br> This will show us exactly where in our code the error is occurring. <br><br> This command is used to run a ROS 2 package named "**udemy_ros2_pkg**" with the "**publisher**" node, and it also runs the command "**gdbserver localhost:3000**" as a **prefix**. The "**gdbserver**" command starts the **GNU Debugger (GDB)** **server** and tells the server to listen for connections on your **local machine (localhost)** on **port 3000**. So this command will run the **publisher** node of **udemy_ros2_pkg** package and also it will run the **gdbserver** command to create a server for another program i.e. the **GNU Debugger —** for listening to the **local machine (localhost)** on **port 3000** and connect to and interact with the code being run.
 
     
 
-    💡 You will get error in the above command (as shown below) if you do not have **GDB server** installed on your Ubuntu system.
-
+    > 💡 You will get error in the above command (as shown below) if you do not have **GDB server** installed on your Ubuntu system. <br> <br>
     ![Untitled](Images/Chapter7.1/Untitled%201.png)
 
-    To **install** the **GDB server,** open a **new terminal** & run the following commands:
-
-    ```cpp
-    sudo apt update
-    sudo apt upgrade
-    sudo apt install gdbserver
-    ```
-
-    This will install the **GDB server** on your Ubuntu machine.
+    > 💡 To **install** the **GDB server,** open a **new terminal** & run the following commands: <br>
+        `sudo apt update`<br>
+        `sudo apt upgrade`<br>
+        `sudo apt install gdbserver`
+        <br> This will install the **GDB server** on your Ubuntu machine.
 
 
     After successfully running the above code, you will see the following message on the **terminal:**
@@ -154,7 +144,7 @@ So lets learn how we can better debug our ROS 2 code.
     
     You can find more information about Debugging on **VS Code Official Documentation Page On Debugging**.
     
-    💡 This **launch.json** is a **launch configuration file** that **Visual Studio Code (VSCode)** during its **code debugging operations.** The file contains a single configuration, **"C++ Debugger"**, which is set to **launch** when the "**launch**" request is made. The configuration type is set to "**cppdbg**" , which is the **C++ debugger in VSCode**. The "**miDebuggerServerAddress**" is set to "**localhost:3000**", which specifies the address and port of the debugger server. This line connects our **VS Code C++ Debugger** to the **GDB server**. The "**cwd**" field, short for "**current working directory**," specifies the directory where the program being debugged should start running. The value is set to **"/"**, which is the root directory of the file system in **Ubuntu**. The "**program**" field **specifies the location of the executable program that is being debugged**, in this case it is "/**home/pritam/Ros2_Workspaces/debug_ws/install/udemy_ros2_pkg/lib/udemy_ros2_pkg/publisher**".
+    > 💡 This **launch.json** is a **launch configuration file** that **Visual Studio Code (VSCode)** during its **code debugging operations.** The file contains a single configuration, **"C++ Debugger"**, which is set to **launch** when the "**launch**" request is made. The configuration type is set to "**cppdbg**" , which is the **C++ debugger in VSCode**. The "**miDebuggerServerAddress**" is set to "**localhost:3000**", which specifies the address and port of the debugger server. This line connects our **VS Code C++ Debugger** to the **GDB server**. The "**cwd**" field, short for "**current working directory**," specifies the directory where the program being debugged should start running. The value is set to **"/"**, which is the root directory of the file system in **Ubuntu**. The "**program**" field **specifies the location of the executable program that is being debugged**, in this case it is "/**home/pritam/Ros2_Workspaces/debug_ws/install/udemy_ros2_pkg/lib/udemy_ros2_pkg/publisher**".
     This configuration file is used to launch and debug the **publisher** node of udemy_ros2_pkg package.
     
     
@@ -207,11 +197,8 @@ Now uncomment the `publisher_ = this->create_publisher<std_msgs::msg::String>("h
     
     `ros2 node list`
     
-    <aside>
-    💡 On running this command, sometimes you may run into an error that looks something like this:
-    
-    ![*picture source:* [https://answers.ros.org/question/407132/ros2-node-list-crash-xmlrpcclientfault/](https://answers.ros.org/question/407132/ros2-node-list-crash-xmlrpcclientfault/)](Images/Chapter7.1/Untitled%207.png)
-    
+    On running this command, sometimes you may run into an error that looks something like this:
+    ![*picture source:* [https://answers.ros.org/question/407132/ros2-node-list-crash-xmlrpcclientfault/](https://answers.ros.org/question/407132/ros2-node-list-crash-xmlrpcclientfault/)](Images/Chapter7.1/Untitled%207.png) 
     *picture source:* [https://answers.ros.org/question/407132/ros2-node-list-crash-xmlrpcclientfault/](https://answers.ros.org/question/407132/ros2-node-list-crash-xmlrpcclientfault/)
     
     Now to solve this error:
@@ -240,26 +227,26 @@ Now uncomment the `publisher_ = this->create_publisher<std_msgs::msg::String>("h
     </aside>
     
 
-# 4. `colcon build --symlink-install`
+## 4. `colcon build --symlink-install`
 
 - When you run `colcon build` command - all the **intermediate files** - that are generated during the building process of the **ROS2 workspace -** are stored inside the **build** folder. When a package is being built, the build system creates these intermediate files and then uses them to create the final product files, which are then copied to the **install** directory.
 - All the files that are necessary for the execution of codes in a ROS2 workspace — are copied to the **install** **directory** — that includes things such as our **compiled node executables from build folder,** our **custom interface declarations** and **launch files.** The reason ROS2 does this is so that all of the necessary files for the system are located in one place, making it easier to run and manage the system.
 - The **build** directory is used as a temporary location for these i**ntermediate files**, and it is usually not necessary to keep them after the building process is complete.
 - If we look into the **build/udemy_ros2_pkg** folder of our **debug_ws** workspace, we will find the executable file **publisher** for our **src/udemy_ros2_pkg/src/publisher.cpp** file which got created upon running the `colcon build` command from **debug_ws** workspace folder in the terminal.
 
-![Untitled](Images/Chapter7.1/Untitled%208.png)
+    ![Untitled](Images/Chapter7.1/Untitled%208.png)
 
-![Untitled](Images/Chapter7.1/Untitled%209.png)
+    ![Untitled](Images/Chapter7.1/Untitled%209.png)
 
 - Now when we ran the `colcon build` command from **debug_ws** workspace folder in the terminal — ROS2 also created a **copy** of this executable file **publisher** in the **install/udemy_ros2_pkg/lib/udemy_ros2_pkg** folder of the **debug_ws** workspace directory.
 
-![Untitled](Images/Chapter7.1/Untitled%2010.png)
+    ![Untitled](Images/Chapter7.1/Untitled%2010.png)
 
 - Similarly, we can also find a **copy** of the **package.xml** file which was originally created at **debug_ws/src/udemy_ros2_pkg** directory of our **debug_ws** workspace (when we created the **udemy_ros2_pkg** package itself - inside the **debug_ws/src** directory from our terminal **-** using `ros2 pkg create udemy_ros2_pkg --build-type ament_cmake` command) - inside the **debug_ws/install/udemy_ros2_pkg/share/udemy_ros2_pkg** directory.
 
-![Untitled](Images/Chapter7.1/Untitled%2011.png)
+    ![Untitled](Images/Chapter7.1/Untitled%2011.png)
 
-![Untitled](Images/Chapter7.1/Untitled%2012.png)
+    ![Untitled](Images/Chapter7.1/Untitled%2012.png)
 
 - Now everytime we run `colcon build` command to build our workspace, the **ROS2 build system** looks for any changes in these **important changeable files** like **publisher.cpp** and **package.xml** copies the updated files over to the **install** directory.
 - But sometimes, you may just want to edit a single file such as the **package.xml** — **without having to rebuild the entire project/workspace**. Now that is where the command `colcon build --symlink-install` comes into play — this is an alternative way of building our workspace directory using **colcon.**
@@ -280,9 +267,9 @@ Now uncomment the `publisher_ = this->create_publisher<std_msgs::msg::String>("h
     Any changes we make in the **debug_ws/src/udemy_ros2_pkg/package.xml** file will be directly get reflected in **debug_ws/install/udemy_ros2_pkg/share/udemy_ros2_pkg/package.xml** file — without having to build the entire workspace.
     
 
-![Untitled](Images/Chapter7.1/Untitled%2014.png)
+    ![Untitled](Images/Chapter7.1/Untitled%2014.png)
 
-![Untitled](Images/Chapter7.1/Untitled%2015.png)
+    ![Untitled](Images/Chapter7.1/Untitled%2015.png)
 
 - We can also see the same for **debug_ws/install/udemy_ros2_pkg/lib/udemy_ros2_pkg/publisher** file and **debug_ws/build/udemy_ros2_pkg/publisher** file.
     
@@ -302,7 +289,7 @@ Now uncomment the `publisher_ = this->create_publisher<std_msgs::msg::String>("h
 - Head to your **VS Code Editor - debug_ws.**
 - Under the **.vscode** folder of the **debug_ws** directory, create a new file named **tasks.json** in it.
 
-![Untitled](Images/Chapter7.1/Untitled%2020.png)
+    ![Untitled](Images/Chapter7.1/Untitled%2020.png)
 
 - You can find more [Information on **Tasks** in the Official Documentation of VS Code](https://code.visualstudio.com/docs/editor/tasks)
 - Add the following code to **tasks.json** file:
@@ -356,6 +343,3 @@ Now uncomment the `publisher_ = this->create_publisher<std_msgs::msg::String>("h
     ![Untitled](Images/Chapter7.1/Untitled%2025.png)
     
     Here you can see a couple of **ROS2** commands you can run using the **ROS Extension** of **VS Code**.
-    
-
-alternative
